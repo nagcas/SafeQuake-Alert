@@ -75,12 +75,11 @@ function Chat() {
       from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username || 'user'),
     };
 
-    if (message !== '') {
+    if (message.trim() !== '') {
       setMessages((prevMessages) => [newMessage, ...prevMessages]); // Aggiorna la lista di messaggi
       socket.emit('message', newMessage); // Invia il nuovo messaggio al server
+      setMessage(''); // Resetta il campo di input del messaggio
     }
-
-    setMessage(''); // Resetta il campo di input del messaggio
   };
 
   // Effetto per la gestione della connessione al socket e per ricevere i messaggi
@@ -153,24 +152,24 @@ function Chat() {
                   placeholder={t('chat.message')}
                   className='form-control mb-2'
                 />
-              <Col className='d-flex justify-content-end gap-3'>
-                {/* Pulsante per inviare il messaggio */}
-                <Button 
-                  type='submit'
-                  aria-label={t('chat.button-message')} 
-                  className='btn__invia__chat'
-                >
-                  <i className='bi bi-send'></i>
-                </Button>
-                {/* Pulsante per resettare la chat */}
-                <Button 
-                  className='btn__cancel__chat'
-                  aria-label={t('chat.button-cancel')}
-                  onClick={handleResetChat}
-                >
-                  <i className='bi bi-x-circle'></i>
-                </Button>
-              </Col>
+                <Col className='d-flex justify-content-end gap-3'>
+                  {/* Pulsante per inviare il messaggio */}
+                  <Button 
+                    type='submit'
+                    aria-label={t('chat.button-message')} 
+                    className='btn__invia__chat'
+                  >
+                    <i className='bi bi-send'></i>
+                  </Button>
+                  {/* Pulsante per resettare la chat */}
+                  <Button 
+                    className='btn__cancel__chat'
+                    aria-label={t('chat.button-cancel')}
+                    onClick={handleResetChat}
+                  >
+                    <i className='bi bi-x-circle'></i>
+                  </Button>
+                </Col>
               </Col>
               <Col md={4}>
                 {/* Sezione per mostrare l'utente connesso */}
@@ -199,3 +198,4 @@ function Chat() {
 }
 
 export default Chat;
+

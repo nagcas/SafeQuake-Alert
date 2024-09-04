@@ -70,9 +70,12 @@ const server = http.createServer(app);
 // Inizializzazione di socket.io con CORS configurato
 const io = new SocketServer(server, {
   cors: {
-    origin: 'https://safe-quake-alert.vercel.app',
-    methods: ['GET', 'POST'], // Metodi consentiti
-  }
+    origin: [
+      'http://localhost:5173',
+      'https://safe-quake-alert.vercel.app',
+    ],
+    methods: ['GET', 'POST'],
+  },
 });
 
 // Log delle richieste HTTP per il debug
