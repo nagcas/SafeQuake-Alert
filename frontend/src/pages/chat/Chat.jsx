@@ -16,160 +16,110 @@ import { Button, Col, Modal, Row } from 'react-bootstrap';
 import { Context } from '../../modules/Context.jsx';
 import { useTranslation } from 'react-i18next';
 
-// Inizializzazione dinamica della connessione socket al server WebSocket
 const socket = io(import.meta.env.VITE_API_URL || 'http://localhost:5001', {
-  autoConnect: false, // Connessione automatica disabilitata fino a quando non viene richiesta
+  autoConnect: false,
 });
+
 function Chat() {
-
   const { t } = useTranslation('global');
-
-  // Recupera i dati di login dell'utente dal contesto globale
   const { userLogin } = useContext(Context);
-
-  // Definizione degli stati locali per la gestione del messaggio corrente, stato di connessione, utente connesso e lista di messaggi
   const [message, setMessage] = useState('');
   const [isConnect, setIsConnect] = useState(false);
   const [userConnect, setUserConnect] = useState('');
   const [messages, setMessages] = useState([]);
-  const [show, setShow] = useState(false); // Gestisce la visibilità della finestra modale della chat
+  const [show, setShow] = useState(false);
 
-  // Funzione per chiudere la chat e disconnettersi dal server
   const handleClose = () => {
-    setShow(false); // Nasconde la finestra modale
-    setMessages([]); // Reset dei messaggi visualizzati
+    setShow(false);
+    setMessages([]);
     
-    // Invia un messaggio "disconnesso" per notificare la disconnessione
+    // Optional: Send a disconnect message if needed
     const newMessage = {
-      body: 'disconnesso',
-      from: '', // Nessun mittente specificato in questo caso
+      body: 'Client disconnected',
+      from: userLogin?.username || 'user',
     };
-    
-    // Invia il messaggio di disconnessione al server tramite socket
-    socket.emit('message', newMessage);
-    socket.disconnect(); // Disconnette il socket dal server
-    
-    setIsConnect(false); // Aggiorna lo stato di connessione
-    setUserConnect(''); // Resetta il nome dell'utente connesso
+
+    socket.emit('privateMessage', newMessage);
+    socket.disconnect(); // Disconnect from server
+    setIsConnect(false);
   };
 
-  // Funzione per aprire la chat e connettersi al server
-  const handleShow = () => {
-    setShow(true); // Mostra la finestra modale
-    if (!isConnect) {
-      socket.connect(); // Connette il socket solo se non è già connesso
-      setIsConnect(true); // Imposta lo stato di connessione a "vero"
-      
-      // Invia un messaggio "connesso" per notificare la connessione
-      const newMessage = {
-        body: t('chat.connesso'),
-        from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username ? userLogin.username : 'user'),
-      };
-      socket.emit('message', newMessage); // Invia il messaggio di connessione al server
-      if(!newMessage) {
-        setMessages([]); // Reset dei messaggi visualizzati
-      };
-    };
-  };
+  const handleShow = () => setShow(true);
 
-  // Funzione per gestire l'invio di un nuovo messaggio
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Previene il comportamento predefinito del form
-    const newMessage = {
-      body: message, // Corpo del messaggio prelevato dall'input utente
-      from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username ? userLogin.username : 'user'), // Identifica il mittente
-    };
-
-    // Invia il mesasggio solo se ha contenuto
-    if (message !== '') {
-      // Aggiorna la lista di messaggi con il nuovo messaggio
-      setMessages((prevMessages) => [newMessage, ...prevMessages]);
-  
-      // Invia il nuovo messaggio al server
-      socket.emit('message', newMessage);
-    };
-
-    // Resetta il campo di input del messaggio
-    setMessage('');
-  };
- 
-  // Effetto per la gestione della connessione al socket e per ricevere i messaggi
   useEffect(() => {
-    socket.connect(); // Connette il socket quando il componente viene montato
+    if (isConnect) {
+      socket.connect();
 
-    // Funzione per gestire la ricezione di un nuovo messaggio dal server
-    const receiveMessage = (message) => {
-      setUserConnect(message.from); // Aggiorna lo stato con il nome dell'utente che ha inviato il messaggio
-      setMessages((prevMessages) => [message, ...prevMessages]); // Aggiunge il messaggio alla lista visualizzata
+      if (userLogin?.role === 'admin') {
+        socket.emit('registerSafeQuake', userLogin.role); // Register as SafeQuake Alert
+      }
+
+      socket.on('privateMessage', (message) => {
+        setUserConnect(message.from);
+        setMessages((prevMessages) => [message, ...prevMessages]);
+      });
+
+      return () => {
+        socket.off('privateMessage');
+      };
+    }
+  }, [isConnect]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newMessage = {
+      body: message,
+      from: userLogin?.username || 'user',
+      to: 'safequake-alert-id', // ID di SafeQuake Alert
     };
 
-    // Ascolta l'evento 'message' del socket per ricevere i messaggi dal server
-    socket.on('message', receiveMessage);
+    if (message !== '') {
+      setMessages((prevMessages) => [newMessage, ...prevMessages]);
+      socket.emit('privateMessage', newMessage);
+    }
 
-    // Cleanup: rimuove il listener 'message' quando il componente viene smontato
-    return () => {
-      socket.off('message', receiveMessage);
-    };
-  }, [isConnect]); // L'effetto viene eseguito solo quando cambia lo stato di connessione
-
-  // Funzione per resettare la chat
-  const handleResetChat = () => {
-    setMessages([]); // Pulisce tutti i messaggi visualizzati
+    setMessage('');
   };
 
   return (
     <div className='content__chat'>
-      {/* Pulsante per aprire la finestra di chat */}
       <Button className='btn__chat__con__noi' onClick={handleShow}>
         <i className='bi bi-chat-dots icons__chat'></i><span className='text-warning'>{userConnect}</span>
       </Button>
 
-
-      {/* Finestra modale per la chat */}
       <Modal
         className='modal-custom modal-dark'
         aria-label={t('chat.avvia-chat')}
         show={show}
-        onHide={handleClose} // Chiude la finestra quando viene cliccato il pulsante di chiusura
-        backdrop='static' // Previene la chiusura cliccando all'esterno
-        keyboard={false} // Previene la chiusura con il tasto ESC
+        onHide={handleClose}
+        backdrop='static'
+        keyboard={false}
       >
         <Modal.Header closeButton>
           <Modal.Title>{t('chat.title')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Form per l'invio di un nuovo messaggio */}
           <form onSubmit={handleSubmit}>
             <Row>
               <Col md={8}>
                 <input 
                   type='text'
-                  value={message} // Collega il valore dell'input allo stato locale
-                  onChange={(e) => setMessage(e.target.value)} // Aggiorna lo stato quando l'utente digita un messaggio
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   placeholder={t('chat.message')}
                   className='form-control mb-2'
                 />
-              <Col className='d-flex justify-content-end gap-3'>
-                {/* Pulsante per inviare il messaggio */}
-                <Button 
-                  type='submit'
-                  aria-label={t('chat.button-message')} 
-                  className='btn__invia__chat'
-                >
-                  <i className='bi bi-send'></i>
-                </Button>
-                {/* Pulsante per resettare la chat */}
-                <Button 
-                  className='btn__cancel__chat'
-                  aria-label={t('chat.button-cancel')}
-                  onClick={handleResetChat}
-                >
-                  <i className='bi bi-x-circle'></i>
-                </Button>
-              </Col>
+                <Col className='d-flex justify-content-end gap-3'>
+                  <Button 
+                    type='submit'
+                    aria-label={t('chat.button-message')} 
+                    className='btn__invia__chat'
+                  >
+                    <i className='bi bi-send'></i>
+                  </Button>
+                </Col>
               </Col>
               <Col md={4}>
-                {/* Sezione per mostrare l'utente connesso */}
                 <div>
                   <p className='text-center'>{t('chat.users')}</p>
                   <span className='text-warning'>
@@ -180,7 +130,6 @@ function Chat() {
             </Row>
           </form>
 
-          {/* Visualizzazione dei messaggi ricevuti */}
           {messages.map((msg, index) => (
             <div key={index} className='mt-4'>
               <p className='text-white text__message'>

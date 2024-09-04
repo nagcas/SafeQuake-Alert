@@ -160,7 +160,6 @@ function LoggedIn({ handleClose }) {
             <Link onClick={simulateNotification}><i className='bi bi-bell'></i> {t('loggedin.notifica')}</Link>
             {isGoogle_link}
             <Button 
-              handleClose
               onClick={handleLogout} 
               aria-label={t('loggedin.logout-button')}
               className='mt-3 btn__logout'

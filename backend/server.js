@@ -78,6 +78,9 @@ const io = new SocketServer(server, {
   },
 });
 
+// Variabile per memorizzare l'ID di SafeQuake Alert
+let safeQuakeSocketID = null;
+
 // Log delle richieste HTTP per il debug
 app.use(morgan('dev'));
 
@@ -101,13 +104,36 @@ app.use(passport.session());
 io.on('connection', (socket) => {
   console.log(`Nuovo client connesso: ${socket.id}`);
 
-  socket.on('disconnect', () => {
-    console.log(`Client disconnesso: ${socket.id}`);
+  // Event handler per la registrazione di SafeQuake Alert
+  socket.on('registerSafeQuake', (role) => {
+    if (role === 'admin') {
+      safeQuakeSocketID = socket.id; // Memorizza l'ID del socket
+      console.log('SafeQuake Alert registrato con ID:', safeQuakeSocketID);
+    }
   });
 
+  socket.on('disconnect', () => {
+    console.log(`Client disconnesso: ${socket.id}`);
+    if (socket.id === safeQuakeSocketID) {
+      safeQuakeSocketID = null; // Resetta l'ID quando SafeQuake Alert si disconnette
+    }
+  });
+
+  // Gestione dei messaggi privati
+  socket.on('privateMessage', (data) => {
+    console.log('Messaggio privato ricevuto:', data);
+    if (safeQuakeSocketID) {
+      // Invia il messaggio solo a SafeQuake Alert
+      socket.to(safeQuakeSocketID).emit('privateMessage', {
+        body: data.body,
+        from: data.from,
+      });
+    }
+  });
+
+  // Emissione del messaggio a tutti i client tranne l'emittente
   socket.on('message', (data) => {
     console.log('Messaggio ricevuto:', data);
-    // Emissione del messaggio a tutti i client tranne l'emittente
     socket.broadcast.emit('message', {
       body: data.body,
       from: data.from,
@@ -163,7 +189,6 @@ const setupBot = async () => {
 
 setupBot();
 
-
 // Controllo eventi sismici periodico
 setInterval(() => {
   console.log('Avvio del controllo degli eventi sismici');
@@ -175,6 +200,7 @@ server.listen(PORT, () => {
   console.log(`Server in esecuzione sulla porta ${PORT}`);
   console.table(endpoints(app));
 });
+
 
 
 
