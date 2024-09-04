@@ -131,6 +131,14 @@ router.delete('/:contactId', authMiddleware, async (req, res) => {
 });
 
 
+// Middleware per gestire le rotte non trovate
+router.use((req, res, next) => {
+  //res.status(404).json({ error: 'Risorsa non trovata!', message: 'La risorsa richiesta non è stata trovata!' });
+  // Reindirizza alla pagina 404 del frontend
+  res.redirect(`${FRONTEND_URL}/404`);
+});
+
+
 // Esportazione del router
 export default router;
 

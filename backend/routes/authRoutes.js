@@ -194,7 +194,9 @@ router.get(
 
 // Middleware per gestire le rotte non trovate
 router.use((req, res, next) => {
-  res.status(404).json({ error: 'Risorsa non trovata!', message: 'La risorsa richiesta non è stata trovata!' });
+  //res.status(404).json({ error: 'Risorsa non trovata!', message: 'La risorsa richiesta non è stata trovata!' });
+  // Reindirizza alla pagina 404 del frontend
+  res.redirect(`${FRONTEND_URL}/404`);
 });
 
 
