@@ -71,7 +71,7 @@ const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
     origin: 'https://safe-quake-alert.vercel.app',
-    methods: ["GET", "POST"], // Metodi consentiti
+    methods: ['GET', 'POST'], // Metodi consentiti
   }
 });
 
@@ -137,18 +137,29 @@ app.use(authorizedHandler);
 app.use(notFoundHandler);
 app.use(genericErrorHandler);
 
-// Funzione di avvio del bot Telegram
+// URL pubblico del server backend (deve essere HTTPS)
+const webhookURL = `${process.env.BACKEND_URL}/bot${process.env.BOT_TOKEN}`;
+
+// Funzione di avvio del bot Telegram con webhook
 const setupBot = async () => {
   try {
-    await bot.launch();
-    console.log('Bot Telegram avviato');
+    // Imposta il webhook per ricevere aggiornamenti tramite HTTPS
+    await bot.telegram.setWebhook(webhookURL);
+
+    // Invia gli aggiornamenti al webhook
+    app.use(bot.webhookCallback(`/bot${process.env.BOT_TOKEN}`));
+
+    console.log(`Bot Telegram avviato con webhook su ${webhookURL}`);
   } catch (error) {
     console.error('Errore nell\'avvio del bot Telegram:', error);
-    setTimeout(setupBot, 5000); // Tentativo di riavvio dopo 5 secondi
+    
+    // Tentativo di riavvio dopo 5 secondi
+    setTimeout(setupBot, 5000);
   }
 };
 
 setupBot();
+
 
 // Controllo eventi sismici periodico
 setInterval(() => {
