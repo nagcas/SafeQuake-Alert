@@ -83,15 +83,17 @@ function Chat() {
 
   // Effetto per la gestione della connessione al socket e per ricevere i messaggi
   useEffect(() => {
+    // Connette il socket quando la chat è aperta
     if (isConnect) {
-      socket.connect(); // Connette il socket solo quando la chat è aperta
+      socket.connect();
 
       // Funzione per gestire la ricezione di un nuovo messaggio dal server
       const receiveMessage = (message) => {
         setMessages((prevMessages) => [message, ...prevMessages]); // Aggiunge il messaggio alla lista
       };
 
-      socket.on('message', receiveMessage); // Ascolta l'evento 'message' del socket
+      // Ascolta l'evento 'message' del socket
+      socket.on('message', receiveMessage); 
 
       // Log di debug per controllare lo stato della connessione
       socket.on('connect', () => {
@@ -174,7 +176,7 @@ function Chat() {
                 <div>
                   <p className='text-center'>{t('chat.users')}</p>
                   <span className='text-warning'>
-                    {isConnect ? userConnect : ''}
+                    {userConnect}
                   </span>
                 </div>
               </Col>
@@ -196,5 +198,6 @@ function Chat() {
 }
 
 export default Chat;
+
 
 
