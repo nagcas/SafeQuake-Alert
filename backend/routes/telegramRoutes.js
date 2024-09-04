@@ -69,7 +69,7 @@ const sendPostToUsers = async (post) => {
           `Link: ${FRONTEND_URL}/detail-post/${post._id}`
         );
       } catch (error) {
-        console.error(`Errore nell'invio del post all'utente ${user.telegramId}:`, error); // Gestione errori per ogni utente
+        console.error(`Errore nell'invio del post all'utente ${user.idTelegram}:`, error); // Gestione errori per ogni utente
       };
     };
   } catch (error) {

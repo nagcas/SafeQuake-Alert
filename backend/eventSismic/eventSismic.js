@@ -73,7 +73,7 @@ const userFilePath = path.resolve('./users.json');
 // Funzione per formattare la data e l'ora nel fuso orario italiano
 const formatDateToItalianTime = (utcDateString) => {
   const date = new Date(utcDateString);
-  date.setHours(date.getHours() + 2); // Aggiungi due ore per il fuso orario italiano
+  date.setHours(date.getHours());
 
   return date.toLocaleString('it-IT', {
     timeZone: 'Europe/Rome',
