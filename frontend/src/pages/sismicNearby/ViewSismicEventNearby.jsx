@@ -9,10 +9,18 @@
 
 
 import 'leaflet/dist/leaflet.css'; // Importa lo stile di base di Leaflet
-
 import { Button, Col, Modal, Row } from 'react-bootstrap';
 import { MapContainer, TileLayer, Circle, Marker, Popup } from 'react-leaflet';
 import { useTranslation } from 'react-i18next';
+import L from 'leaflet'; // Importa Leaflet per configurare icone personalizzate
+
+// Configurazione dell'icona personalizzata per il Marker
+const customIcon = new L.Icon({
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png', // Usa un'icona predefinita di Leaflet
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34]
+});
 
 function ViewEventSismicNearby({ selectedSismic, setShowModal }) {
 
@@ -44,7 +52,7 @@ function ViewEventSismicNearby({ selectedSismic, setShowModal }) {
   const magnitude = selectedSismic ? selectedSismic.magnitude : 1;
 
   return (
-    <>
+    <> 
       <Modal.Header closeButton>
         <Modal.Title>{t('view-sismic-event-nearby.title')}Dettagli Evento Sismico</Modal.Title>
       </Modal.Header>
@@ -53,7 +61,7 @@ function ViewEventSismicNearby({ selectedSismic, setShowModal }) {
           <Col md={12}>
             {selectedSismic && (
               <div className='p-2'>
-                {t('view-sismic-event-nearby.msg-1')} <span className='fw-bold'>ML {selectedSismic.magnitude}</span> {t('view-sismic-event-nearby.msg-2')} 
+                {t('view-sismic-event-nearby.msg-1')} <span className='fw-bold'>{selectedSismic.magType} {selectedSismic.magnitude}</span> {t('view-sismic-event-nearby.msg-2')} 
                 <span className='fw-bold'> {selectedSismic.place}</span> {t('view-sismic-event-nearby.msg-3')} <span className='fw-bold'>{formatDateToItalianTime(selectedSismic.time)} </span>
                 {t('view-sismic-event-nearby.msg-4')} <span className='fw-bold'>{t('view-sismic-event-nearby.msg-5')} {selectedSismic.geometry[0].latitude} {t('view-sismic-event-nearby.msg-6')} {selectedSismic.geometry[0].longitude}</span>  
                 {t('view-sismic-event-nearby.msg-7')} <span className='fw-bold'>{selectedSismic.geometry[0].depth} Km</span>.
@@ -78,9 +86,10 @@ function ViewEventSismicNearby({ selectedSismic, setShowModal }) {
                   radius={magnitude * 10000} 
                   color='red' 
                 />
-                <Marker position={coordinates}>
+                <Marker position={coordinates} icon={customIcon}>
                   <Popup>
-                  {t('view-sismic-event-nearby.magnitudo')} {magnitude}<br />{t('view-sismic-event-nearby.luogo')} {selectedSismic.place}
+                    {t('view-sismic-event-nearby.magnitudo')} {magnitude}<br />
+                    {t('view-sismic-event-nearby.luogo')} {selectedSismic.place}
                   </Popup>
                 </Marker>
               </MapContainer>
@@ -102,5 +111,6 @@ function ViewEventSismicNearby({ selectedSismic, setShowModal }) {
 };
 
 export default ViewEventSismicNearby;
+
 
 

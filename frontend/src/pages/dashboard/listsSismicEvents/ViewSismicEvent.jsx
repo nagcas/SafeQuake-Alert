@@ -9,10 +9,18 @@
  */
 
 import 'leaflet/dist/leaflet.css'; // Importa lo stile di base di Leaflet
-
 import { Button, Col, Modal, Row } from 'react-bootstrap';
 import { MapContainer, TileLayer, Circle, Marker, Popup } from 'react-leaflet';
 import { useTranslation } from 'react-i18next';
+import L from 'leaflet'; // Importa Leaflet per configurare icone personalizzate
+
+// Configurazione dell'icona personalizzata per il Marker
+const customIcon = new L.Icon({
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png', // Usa un'icona predefinita di Leaflet
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34]
+});
 
 function ViewEventSismic({ selectedSismic, setShowModal, setShowModalUltimo }) {
 
@@ -21,9 +29,7 @@ function ViewEventSismic({ selectedSismic, setShowModal, setShowModalUltimo }) {
   // Funzione per formattare la data e l'ora nel fuso orario italiano
   const formatDateToItalianTime = (utcDateString) => {
     const date = new Date(utcDateString);
-    // Aggiungi due ore per il fuso orario italiano
     date.setHours(date.getHours() + 2);
-    
     return date.toLocaleString('it-IT', { 
       timeZone: 'Europe/Rome',
       year: 'numeric',
@@ -42,7 +48,7 @@ function ViewEventSismic({ selectedSismic, setShowModal, setShowModalUltimo }) {
       setShowModal(false); // Chiude il modal generico
     } else if (setShowModalUltimo) {
       setShowModalUltimo(false); // Chiude il modal specifico per l'ultimo evento sismico
-    };
+    }
   };
 
   // Configurazione delle coordinate dell'evento sismico
@@ -59,7 +65,7 @@ function ViewEventSismic({ selectedSismic, setShowModal, setShowModalUltimo }) {
           <Col md={12}>
             {selectedSismic && (
               <div className='p-2'>
-                {t('view-sismic.msg-1')} <span className='fw-bold'>ML {magnitude}</span> {t('view-sismic.msg-2')} 
+                {t('view-sismic.msg-1')} <span className='fw-bold'>{selectedSismic.properties.magType} {magnitude}</span> {t('view-sismic.msg-2')} 
                 <span className='fw-bold'> {selectedSismic.properties.place}</span> il <span className='fw-bold'>{formatDateToItalianTime(selectedSismic.properties.time)} </span>
                 {t('view-sismic.msg-3')} <span className='fw-bold'> {t('view-sismic.msg-4')} {coordinates[0]}, {t('view-sismic.msg-5')} {coordinates[1]})</span>,{' '}   
                 {t('view-sismic.msg-6')}  <span className='fw-bold'> {selectedSismic.geometry.coordinates[2]} Km</span>.
@@ -83,10 +89,13 @@ function ViewEventSismic({ selectedSismic, setShowModal, setShowModalUltimo }) {
                   center={coordinates} 
                   radius={magnitude * 10000} // Raggio del cerchio basato sulla magnitudo
                   color='red' 
+                  fillColor='red'
+                  fillOpacity={0.3}
                 />
-                <Marker position={coordinates}>
+                <Marker position={coordinates} icon={customIcon}>
                   <Popup>
-                  {t('view-sismic.magnitudo')} {magnitude}<br />{t('view-sismic.luogo')} {selectedSismic.properties.place}
+                    {t('view-sismic.magnitudo')} {magnitude}<br />
+                    {t('view-sismic.luogo')} {selectedSismic.properties.place}
                   </Popup>
                 </Marker>
               </MapContainer>
@@ -108,5 +117,3 @@ function ViewEventSismic({ selectedSismic, setShowModal, setShowModalUltimo }) {
 };
 
 export default ViewEventSismic;
-
-
