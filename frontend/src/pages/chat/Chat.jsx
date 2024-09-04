@@ -17,7 +17,7 @@ import { Context } from '../../modules/Context.jsx';
 import { useTranslation } from 'react-i18next';
 
 // Inizializzazione dinamica della connessione socket al server WebSocket
-const socket = io('import.meta.env.VITE_API_URL '|| 'http://localhost:5001', {
+const socket = io(import.meta.env.VITE_API_URL || 'http://localhost:5001', {
   autoConnect: false, // Connessione automatica disabilitata fino a quando non viene richiesta
 });
 
