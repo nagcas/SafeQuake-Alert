@@ -31,7 +31,7 @@ const messaging = getMessaging();
 export const requestForToken = async () => {
   try {
     // Registra il Service Worker
-    const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.jsx');
+    const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
     // console.log('Service Worker registrato con successo:', registration);
 
     // Attende che il Service Worker sia pronto
