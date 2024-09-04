@@ -1,6 +1,12 @@
 import express from 'express';
 import { Telegraf } from 'telegraf'; // Importa il framework Telegraf per gestire i bot di Telegram
 import UserTelegram from '../models/userTelegram.js'; // Importa il modello UserTelegram per ottenere gli utenti dal database
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// URL frontend
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 const router = express.Router(); // Crea un router Express per gestire le richieste HTTP
 
@@ -60,7 +66,7 @@ const sendPostToUsers = async (post) => {
           `Autore: ${post.author}\n\n` +
           `Data Pubblicazione: ${formatDateToItalianTime(post.createdAt)}\n\n` +
           `${post.description}\n\n` +
-          `Link: http://localhost:5173/detail-post/${post._id}` // Link al post completo
+          `Link: ${FRONTEND_URL}/detail-post/${post._id}`
         );
       } catch (error) {
         console.error(`Errore nell'invio del post all'utente ${user.telegramId}:`, error); // Gestione errori per ogni utente
