@@ -1,0 +1,88 @@
+.content__news {
+  background-color: #ffffff52;
+  height: auto;
+  padding: 30px;
+  border-radius: 25px;
+}
+
+.title__news,
+.subtitle__news {
+  text-align: center;
+}
+
+.title__article {
+  color: #1c547d;
+}
+
+.title__article {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Mostra un massimo di 3 righe */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: calc(1.2em * 3); /* Calcola l'altezza per 3 righe */
+  line-height: 1.2em; /* Altezza della linea */
+}
+
+.content__card {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+}
+
+.content__news,
+.content__card {
+  flex: 1 1 auto;
+}
+
+.content__card:hover {
+  cursor: pointer;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.8);
+}
+
+.link__article {
+  text-decoration: none;
+  color: #1c547d;
+}
+
+.link__article:hover {
+  color: #000;
+}
+
+.content__text__article {
+  font-size: 1.0rem;
+}
+
+.content__text__article {
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Mostra un massimo di 3 righe */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: calc(1.0em * 5); /* Calcola l'altezza per 3 righe */
+  line-height: 1.0em; /* Altezza della linea */
+}
+
+.image__article {
+  height: 180px;
+}
+
+.text__date {
+  font-size: 1.0rem;
+}
+
+.card-footer {
+  margin-top: auto;
+  text-align: center;
+}
+
+
+/* tablet e desktop */
+@media (min-width: 991px) { 
+
+  .image__article {
+    width: 200px;
+    height: 220px;
+  }
+}

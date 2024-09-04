@@ -1,0 +1,27 @@
+/* smartphone */
+
+.content__section__info {
+  background-color: #ffffff52;
+  border-radius: 25px;
+  color: #000;
+  margin: 0 auto;
+  margin-top: 80px;
+  padding: 80px;
+  text-align: center;
+}
+
+.content__info h2 {
+  font-size: 2.6rem;
+}
+
+/* tablet e desktop */
+@media (min-width: 991px) { 
+  .content__section__info {
+    margin-top: 220px;
+  }
+
+  .content__info p {
+    font-size: 1.5rem;
+  }
+
+}

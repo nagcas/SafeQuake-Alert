@@ -1,0 +1,89 @@
+.contact__info {
+  margin-top: 120px;
+  background-color: #ffffff52;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.contact__info a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.contact__info > h4 {
+  color: #000;
+  font-weight: 500;
+}
+
+.contact__info > p {
+  color: #000;
+  font-size: 1.0rem;
+}
+
+.form__contacts {
+  background-color: #ffffff52;
+  border-radius: 25px;
+  height: 780px;
+  margin-top: 160px;
+}
+
+.form__content__title__contacts {
+  background-color: #1c557d;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  width: 340px;
+  height: 200px;
+  margin: -110px auto 30px auto;
+  color: #fff;
+}
+
+.title__icons__contacts {
+  font-size: 4.0rem;
+}
+
+.title__contacts {
+  font-size: 2.5rem;
+}
+
+.content__form__contacts {
+  border: 50px;
+  width: 340px;
+}
+
+.btn__contacts__form {
+  margin-top: 30px;
+  background-color: #1c547d;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 0;
+  padding: 15px 20px;
+  border-radius: 15px;
+}
+
+.btn__contacts__form:hover {
+  background-color: #002144;
+  color:#fff;
+}
+
+/* tablet e desktop */
+@media (min-width: 991px) {
+  .form__contacts {
+    width: 840px;
+    height: 700px;
+    margin: 0 auto;
+    margin-top: 200px;
+  }
+
+  .contact__info {
+    margin-top: 200px;
+  }
+
+  .form__contacts {
+    margin-top: 200px;
+  }
+
+  .content__form__contacts {
+    width: 640px;
+  }
+
+}

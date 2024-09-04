@@ -1,0 +1,82 @@
+.form__login {
+  background-color: #ffffff52;
+  border-radius: 25px;
+  height: 560px;
+  margin-top: 240px;
+}
+
+.form__content__title__login {
+  background-color: #1c557d;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  width: 300px;
+  height: 200px;
+  margin: -110px auto 30px auto;
+  color: #fff;
+}
+
+.title__icons__login {
+  font-size: 4.0rem;
+}
+
+.title__login {
+  font-size: 2.5rem;
+}
+
+.content__form__login {
+  border: 50px;
+  width: 300px;
+}
+
+.btn__accedi__form__login {
+  margin-top: 30px;
+  background-color: #1c547d;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 0;
+  padding: 15px 20px;
+  border-radius: 15px;
+}
+
+.btn__accedi__form__login:hover {
+  background-color: #002144;
+  color:#fff;
+}
+
+.text__registrato {
+  font-size: 1.0rem;
+  margin: 40px 0 10px 0;
+  text-align: center;
+  color: #000;
+}
+
+.text__password__forgot {
+  font-size: 1.0rem;
+  text-align: center;
+  color: #000;
+}
+
+.link__register,
+.link__forgot {
+  text-decoration: none;
+  color: #000;
+}
+
+.link__register:hover,
+.link__forgot:hover {
+  color: #fff;
+}
+
+/* tablet e desktop */
+@media (min-width: 991px) {
+  .form__login {
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 260px;
+  }
+  
+  .content__form__login {
+    width: 450px;
+  }
+
+}

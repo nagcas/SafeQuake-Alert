@@ -1,0 +1,13 @@
+.content__about {
+  margin-top: 180px;
+  
+}
+
+.content__card {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff52;
+  color: #000;
+  border-radius: 15px;
+  padding: 30px;
+}

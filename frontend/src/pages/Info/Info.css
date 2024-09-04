@@ -1,0 +1,45 @@
+.content__info__util {
+  margin-top: 160px;
+}
+
+.title__info__util {
+  background-color: #ffffff52;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 60px;
+  font-size: 2.0rem;
+}
+
+.content__list__util {
+  width: 430px;
+}
+
+.info__card__util {
+  background-color: #ffffff52;
+  color: #fff;
+  border-radius: 15px;
+}
+
+.info__item__title {
+  font-weight: 600;
+}
+
+.info__card__util p {
+  font-size: 1.2rem;
+}
+
+.info__item__util {
+  height: auto;
+  background-color: #ffffff52;
+  color: #000;
+  border-radius: 15px;
+}
+
+/* View Tablet and Desktop */
+@media (min-width: 767px) {
+  .info__item__util {
+    height: 340px;
+  }
+}

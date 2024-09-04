@@ -1,0 +1,121 @@
+.content__chat {
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+}
+
+.icons__chat {
+  padding: 5px;
+  font-size: 1.5rem;
+}
+
+/* Stile per il corpo del modale con scroll verticale */
+.modal-custom .modal-body {
+  max-height: 40vh; /* Imposta l'altezza massima del corpo del modale */
+  overflow-y: auto; /* Abilita lo scroll verticale quando il contenuto supera l'altezza massima */
+}
+
+/* Colori e stili per il modale scuro */
+.modal-dark .modal-content {
+  background-color: #343a40; /* Colore di sfondo scuro */
+  color: #ffffff; /* Colore del testo bianco */
+}
+
+.modal-dark .modal-header {
+  background-color: #495057; /* Colore di sfondo leggermente più chiaro */
+}
+
+.modal-dark .modal-footer {
+  background-color: #495057; /* Colore di sfondo leggermente più chiaro */
+}
+
+.modal-dark .form-control {
+  background-color: #495057; /* Colore di sfondo input scuro */
+  color: #ffffff; /* Colore del testo input bianco */
+  border: 1px solid #6c757d; /* Colore del bordo dell'input */
+}
+
+.modal-dark {
+  border-color: #004085; /* Colore del bordo al passaggio del mouse */
+}
+
+/* Posizionamento personalizzato del modale */
+.modal-custom {
+  top: 70%; /* Distanza dal top della pagina */
+  left: 10%; /* Distanza dal lato sinistro della pagina */
+  transform: translate(-10%, -10%); /* Centra il modale rispetto alle coordinate specificate */
+}
+
+.modal-custom .modal-dialog {
+  margin: 0; /* Rimuovi il margine predefinito del dialogo */
+}
+
+.modal-custom .modal-content {
+  border-radius: 15px; /* Opzionale: radius angoli per un aspetto più elegante */
+}
+
+.btn__invia__chat {
+  background-color: #fff;
+  color: #000;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  border: 0;
+  padding: 10px 30px;
+  border-radius: 15px;
+}
+
+.btn__invia__chat:hover {
+  background-color: #002144;
+  color:#fff;
+}
+
+.btn__cancel__chat {
+  background-color: #1c547d;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 0;
+  padding: 10px 30px;
+  border-radius: 15px;
+}
+
+.btn__cancel__chat:hover {
+  background-color: #002144;
+  color:#fff;
+}
+
+.btn__chat__con__noi {
+  background-color: #1c547d;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+.btn__chat__con__noi:hover {
+  background-color: #002144;
+  color:#fff;
+}
+
+.text__message {
+  font-size: 0.9rem;
+}
+
+/* View Tablet */
+@media (min-width: 767px) {
+  /* Posizionamento personalizzato del modale */
+  .modal-custom {
+    top: 70%; /* Distanza dal top della pagina */
+    left: 45%; /* Distanza dal lato sinistro della pagina */
+    transform: translate(-10%, -10%); /* Centra il modale rispetto alle coordinate specificate */
+  }
+}
+
+/* View Desktop */
+@media (min-width: 1399px) {
+  /* Posizionamento personalizzato del modale */
+  .modal-custom {
+    top: 70%; /* Distanza dal top della pagina */
+    left: 72%; /* Distanza dal lato sinistro della pagina */
+    transform: translate(-10%, -10%); /* Centra il modale rispetto alle coordinate specificate */
+  }
+}

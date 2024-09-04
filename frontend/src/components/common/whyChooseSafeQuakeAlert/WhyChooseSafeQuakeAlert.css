@@ -1,0 +1,69 @@
+/* smartphone */
+
+.why-choose-safequake-alert {
+  margin-top: 40px;
+  padding: 60px;
+  border-radius: 25px;
+  color: #fff;
+}
+
+.feature-card {
+  margin-top: 30px;
+  max-width: 800px;
+  height: auto;
+  background-color: #ffffff52;
+  border-radius: 25px;
+  color: #000;
+  text-align: center;
+  padding: 20px;
+}
+
+.feature-card i {
+  font-size: 80px;
+  color: #ffffffc7;
+}
+
+.icon-container {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px auto;
+  border-radius: 25px;
+  background-color: #1c557d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+  font-size: 1.8rem;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+/* tablet e desktop */
+@media (min-width: 991px) {
+  .why-choose-safequake-alert {
+    margin-top: 220px;
+  }
+
+  .feature-card {
+    margin-top: 20px;
+  }
+
+  .why-choose-safequake-alert h2 {
+    margin-bottom: 60px;
+    font-size: 2.8rem;
+  }
+
+  .why-choose-safequake-alert h3 {
+    font-size: 1.6rem;
+  }
+
+  .why-choose-safequake-alert p {
+    font-size: 1.0rem;
+  }
+}

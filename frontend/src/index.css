@@ -1,0 +1,9 @@
+body {
+  background: url('./assets/images/carl-wang-OCe8cTGymSQ-unsplash.jpg') rgba(0, 0, 0, 0.6) fixed;
+  background-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 20px;
+  font-family: 'Roboto', sans-serif;
+}

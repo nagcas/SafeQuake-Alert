@@ -1,0 +1,52 @@
+.page__not__found {
+  margin-top: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding: 40px;
+  background-color: #ffffff52;
+  border-radius: 15px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  max-width: 650px;
+  text-align: center;
+}
+
+.content h1 {
+  font-size: 10vw;
+  line-height: 1em;
+  margin-bottom: 20px;
+}
+
+.content h4 {
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #000;
+  font-size: 2em;
+}
+
+.content p {
+  font-size: 1.2em;
+  color: #0d0d0d;
+}
+
+.content ul {
+  list-style-type: none;
+}
+
+.content li {
+  font-size: 1.0rem;
+}
+
+.home {
+  color: #fff;
+  text-decoration: none;
+}
+
+.home:hover {
+  color: #ccc;
+}
+

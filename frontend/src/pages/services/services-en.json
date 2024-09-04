@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Earthquake Alerts",
+    "content": "Receive real-time alerts via push notifications and Telegram to stay informed about earthquakes.",
+    "link": "/register"
+  },
+  {
+    "title": "Interactive Map",
+    "content": "View real-time earthquakes on an interactive map to monitor affected areas and plan accordingly.",
+    "link": "/sismic-map"
+  },
+  {
+    "title": "Useful Tips",
+    "content": "Personalized suggestions on how to behave during an earthquake.",
+    "link": "/register"
+  },
+  {
+    "title": "News Section",
+    "content": "Stay updated with the latest news on seismology, geology, and safety through a dedicated news section.",
+    "link": "/blog-posts"
+  },
+  {
+    "title": "Alert History",
+    "content": "Review the history of received notifications and get details on past earthquakes.",
+    "link": "/register"
+  },
+  {
+    "title": "Real-Time Chat",
+    "content": "Communicate directly with administrators via a real-time chat for support and quick responses.",
+    "link": "/"
+  }
+]

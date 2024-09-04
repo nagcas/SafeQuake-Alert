@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Notifiche di Terremoti",
+    "content": "Ricevi allerte in tempo reale tramite notifiche push e Telegram per essere sempre informato in caso di terremoti.",
+    "link": "/register"
+  },
+  {
+    "title": "Mappa Interattiva",
+    "content": "Visualizza i terremoti in tempo reale su una mappa interattiva per monitorare le aree colpite e pianificare di conseguenza.",
+    "link": "/sismic-map"
+  },
+  {
+    "title": "Consigli Utili",
+    "content": "Suggerimenti personalizzati su come comportarsi durante un terremoto.",
+    "link": "/register"
+  },
+  {
+    "title": "Sezione News",
+    "content": "Rimani aggiornato con le ultime notizie sulla sismologia, geologia e sicurezza, tramite una sezione dedicata alle news.",
+    "link": "/blog-posts"
+  },
+  {
+    "title": "Storico delle Allerte",
+    "content": "Consulta lo storico delle notifiche ricevute e ottieni dettagli sui terremoti passati.",
+    "link": "/register"
+  },
+  {
+    "title": "Chat in Tempo Reale",
+    "content": "Comunica direttamente con gli amministratori tramite una chat in tempo reale per ricevere supporto e risposte rapide.",
+    "link": "/"
+  }
+]

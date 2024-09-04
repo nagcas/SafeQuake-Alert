@@ -1,0 +1,16 @@
+.content__event__sismic {
+  margin-top: 160px;
+}
+
+.title__list__sismic,
+.title__map__sismic {
+  background-color: #ffffff52;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.title__map__sismic {
+  margin-top: 60px;
+}

@@ -1,0 +1,53 @@
+.content__services {
+  margin-top: 160px;
+}
+
+.title__services {
+  background-color: #ffffff52;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 60px;
+  font-size: 2.0rem;
+}
+
+.title__services h2 {
+  font-size: 2.6rem;
+}
+
+.services__card {
+  background-color: #ffffff52;
+  color: #fff;
+  border-radius: 15px;
+}
+
+.service__item {
+  height: 330px;
+  background-color: #ffffff52;
+  color: #000;
+  border-radius: 15px;
+}
+
+.btn__services {
+  margin-top: 30px;
+  background-color: #1c547d;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 0;
+  padding: 15px 20px;
+  border-radius: 15px;
+}
+
+.btn__services:hover {
+  background-color: #002144;
+  color:#fff;
+}
+
+/* tablet e desktop */
+@media (min-width: 991px) {
+  .service__item {
+    height: 280px;
+  }
+
+}

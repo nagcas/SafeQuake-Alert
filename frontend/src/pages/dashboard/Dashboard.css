@@ -1,0 +1,358 @@
+.content__dashboard {
+  margin-top: 160px;
+}
+
+.content__last__event,
+.content__high__event,
+.content__registered__users,
+.content__published__posts,
+.content__messages,
+.content__id__telegram {
+  position: relative;
+  background-color: #ffffff52;
+  color: #000;
+  height: 200px;
+  border-radius: 15px;
+  margin-bottom: 60px;
+}
+
+.icons__last__event,
+.icons__high__event,
+.icons__registered__users,
+.icons__published__posts,
+.icons__messages {
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  background-color: #1c557d;
+  height: 40px;
+  padding: 60px;
+}
+
+.icons {
+  position: absolute;
+  top: 15px;
+  left: 25px;
+}
+
+.icons__last__event i,
+.icons__high__event i,
+.icons__registered__users i,
+.icons__published__posts i,
+.icons__messages i {
+  font-size: 4.0rem;
+  color: #fff;
+}
+
+.content__info {
+  position: relative;
+  margin-top: 30px;
+}
+
+.info {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.title__last__event,
+.title__high__event,
+.title__registered__users,
+.title__published__posts,
+.title__messages {
+  width: 100%;
+  position: absolute;
+  bottom: 40px;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.1rem;
+  border-bottom: 2px solid #fff;
+}
+
+.content__list__posts {
+  margin-top: 50px;
+}
+
+/* Gestione elenco table */
+
+.table__users,
+.table__posts,
+.table__messages,
+.table__sismics,
+.table__id__telegram {
+  --bs-table-bg: #ffffff52;
+  color: #000;
+  font-size: 0.9rem; 
+}
+
+.table__users td,
+.table__posts td,
+.table__messages td,
+.table__id__telegram td {
+  height: 40px;
+}
+
+.title__list__sismic,
+.title__map__sismic,
+.title__login__dashboard {
+  background-color: #ffffff52;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.title__login__dashboard {
+  font-size: 1.5rem;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn__action .btn__wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 5px; 
+}
+
+.btn__action .btn {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem; 
+}
+
+.table__sismics th, .table__sismics td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.legend,
+.strongest__earthquakes {
+  height: auto;
+  background-color: #ffffff52;
+  color: #000;
+  padding: 10px;
+  font-size: 14px;
+  width: auto;
+  border-radius: 15px;
+}
+
+.legend h4,
+.strongest__earthquakes h4 {
+  text-align: center;
+  margin: 0;
+  padding: 15px;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.legend ul,
+.strongest__earthquakes ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.legend li,
+.strongest__earthquakes li {
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.legend li:hover
+.strongest__earthquakes li:hover {
+  text-decoration: underline;
+}
+
+.tooltip__magnitudo {
+  border: 0;
+  text-align: center;
+  font-size: 5rem;
+  color: #000;
+}
+
+.filter__lists__sismics {
+  color: #fff;
+}
+
+.select__days,
+.select__magnitudo {
+  margin-bottom: 30px;
+}
+
+.select__user:hover,
+.select__event:hover,
+.select__message:hover,
+.select__posts:hover,
+.select__id__telegram:hover {
+  background-color: #ffffff52;
+  cursor: pointer;
+}
+
+.btn__save,
+.btn__send__telegram {
+  background-color: #fff;
+  color: #000;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  border: 0;
+  padding: 10px 40px;
+  border-radius: 15px;
+}
+
+.btn__save:hover,
+.btn__send__telegram:hover {
+  background-color: #002144;
+  color:#fff;
+}
+
+.btn__cancel {
+  background-color: #1c547d;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 0;
+  padding: 10px 30px;
+  border-radius: 15px;
+}
+
+.btn__cancel:hover {
+  background-color: #002144;
+  color:#fff;
+}
+
+.tabs__view__user .nav-link {
+  color: #000;
+}
+
+.active>.page-link, .page-link.active {
+  --bs-pagination-active-bg: #1c547d;
+  --bs-pagination-active-border-color: #1c547d;
+}
+
+.pagination {
+  --bs-link-color: #000;
+  --bs-pagination-padding-x: 0.50rem;
+}
+
+.legend li:hover,
+.strongest__earthquakes li:hover {
+  text-decoration: underline;
+}
+
+.btn__pagination {
+  --bs-pagination-bg: #94c5ff2e;
+  --bs-pagination-color: #fff;
+}
+
+
+.title__login__dashboard {
+  margin-top: 60px;
+  background-color: #ffffff52;
+  padding: 20px;
+  border-radius: 15px;
+  color: #000;
+}
+
+.access__dashboard {
+  text-decoration: none;
+  color: #fff;
+}
+
+.access__dashboard:hover {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.info__dashboard {
+  margin-top: 60px;
+  background-color: #ffffff52;
+  padding: 20px;
+  border-radius: 15px;
+  color: #000;
+}
+
+.input__search {
+  background-color: #94c5ff2e;
+}
+
+.input__search::placeholder,
+.input__search {
+  color: #fff;
+  opacity: 1;  
+}
+
+.input__search:hover,
+.input__search:focus {
+  background-color: #94c5ff2e;
+  color: #fff; 
+  opacity: 1;  
+}
+
+.custom__select {
+  background-color: #94c5ff2e; 
+  color: #fff;     
+}
+
+.custom__select option {
+  background-color: #94c5ff2e;  
+  color: #000;
+}
+
+.custom__select:focus {
+  background-color: #94c5ff2e;
+}
+
+.custom__select option:checked {
+  background-color: #1c547d;  
+  color: #fff;
+}
+
+.info-sismic {
+  background-color: #ffffff52;
+  color: #000;
+  padding: 2px 5px;
+  font-size: 0.5rem;
+  border-radius: 50%;
+  border: 0;
+}
+
+.info-sismic:hover {
+  cursor: pointer;
+  background-color: #ccc;
+}
+
+
+/* Modifica l'aspetto su schermi piccoli */
+@media (max-width: 768px) {
+  .table__users,
+  .table__posts,
+  .table__sismics {
+    font-size: 0.8rem; 
+  }
+
+  .table__users th, .table__users td,
+  .table__posts th, .table__posts td,
+  .table__sismics th, .table__sismics td {
+    padding: 8px;
+  }
+
+  .timer {
+    font-size: 1rem;
+  }
+
+  .btn__action .btn {
+    margin-bottom: 5px;
+    width: 100%;
+  }
+
+  .legend,
+  .strongest__earthquakes {
+    height: auto;
+    margin-top: 60px;
+  }
+
+  .pagination {
+    --bs-pagination-padding-x: 0.10rem;
+  }
+}

@@ -1,0 +1,135 @@
+.user__benvenuto {
+  font-size: 0.9rem;
+}
+
+.register__navbar {
+  width: 80px;
+}
+
+.login__navbar {
+  width: 80px;
+}
+
+.image__avatar {
+  width: 40px;
+  margin-left: 15px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+}
+
+.btn__login {
+  background-color: #fff;
+  color: #000;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  border: 0;
+  padding: 10px 40px;
+  border-radius: 15px;
+}
+
+.btn__login:hover {
+  background-color: #002144;
+  color:#fff;
+}
+
+.btn__register {
+  background-color: #1c547d;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 0;
+  padding: 10px 30px;
+  border-radius: 15px;
+}
+
+.btn__register:hover {
+  background-color: #002144;
+  color:#fff;
+}
+
+.btn__logout {
+  background-color: #c53f2d;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: 0;
+  padding: 8px 20px;
+  border-radius: 15px;
+}
+
+.btn__logout:hover {
+  background-color: #7e2a1f;
+}
+
+
+.custom-dropdown-toggle::after {
+  border-top-color: white; 
+}
+
+.custom-dropdown-toggle:focus::after,
+.custom-dropdown-toggle:hover::after {
+  border-top-color: white; 
+}
+
+.dropdown-menu .dropdown-item.active,
+  .dropdown-menu .dropdown-item:active {
+    background-color: #1c547d;
+    color: #ffffff;
+  }
+
+
+/* CSS per dispositivi mobili */
+@media(max-width: 991px) {
+  .author__benvenuto {
+    font-size: 1.0rem;
+  }
+
+  .register__navbar {
+    width: 120px;
+  }
+  
+  .login__navbar {
+    width: 80px;
+  }
+
+  .image__avatar {
+    width: 40px;
+    margin-left: 15px;
+  }
+
+  .d-lg-none {
+    display: block !important; /* Mostra il menu completo su dispositivi mobili */
+  }
+
+  .d-lg-block {
+    display: none !important; /* Nasconde il dropdown su dispositivi mobili */
+  }
+
+  .image__avatar {
+    width: 80px; /* Immagine dell'avatar più grande su mobile */
+    margin: 0 auto 15px; /* Centra l'immagine con un margine inferiore */
+  }
+
+  .text-white.text-center p {
+    margin: 10px 0;
+  }
+
+  .d-lg-none a {
+    color: white;
+    text-decoration: none;
+    margin: 10px 0;
+    display: block;
+  }
+
+  .d-lg-none button {
+    width: 100%; /* Allarga il pulsante Logout per mobile */
+  }
+}
+
+/* CSS per tablet e desktop */
+@media(min-width: 992px) {
+  .d-lg-none {
+    display: none !important; /* Nasconde il menu completo su tablet e desktop */
+  }
+
+  .d-lg-block {
+    display: block !important; /* Mostra il dropdown su tablet e desktop */
+  }
+}

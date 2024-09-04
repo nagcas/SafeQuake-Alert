@@ -1,0 +1,114 @@
+.content__blog {
+  margin-top: 180px;
+}
+
+.title__blog__posts {
+  text-align: center;
+  color: #fff;
+}
+
+.card {
+  background-color: #ffffff52;
+  border-radius: 15px;
+  transition: 0.3s ease-in-out;
+}
+
+.content__card__post:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
+.card__img__post {
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.card__title__post {
+  font-size: 1.1rem;
+  color: #000;
+}
+
+.title__category {
+  float: left;
+}
+
+.btn__detail {
+  background-color: #fff;
+  color: #000;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+.btn__detail:hover {
+  background-color: #002144;
+  color:#fff;
+}
+
+.link__post {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  justify-content: end;
+}
+
+.link__post:hover {
+  text-decoration: underline;
+}
+
+.content__title__section {
+  background-color: #ffffff52;
+  padding: 10px;
+  border-radius: 15px;
+  font-size: 1.2rem;
+}
+
+.content__category__filter {
+  padding: 20px;
+}
+
+.link__post__filter {
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 15px;
+  text-decoration: none;
+}
+
+.link__post__filter:hover {
+  color: #ccc;
+  text-decoration: underline;
+}
+
+.pagination {
+  --bs-pagination-padding-x: 0.10rem;
+}
+
+.btn__pagination {
+  --bs-pagination-bg: #94c5ff2e;
+  --bs-pagination-color: #fff;
+}
+
+.input__search__titolo {
+  background-color: #94c5ff2e;
+}
+
+.input__search__titolo::placeholder,
+.input__search__titolo {
+  color: #fff;
+  opacity: 1;  
+}
+
+.input__search__titolo:hover,
+.input__search__titolo:focus {
+  background-color: #94c5ff2e;
+  color: #fff; 
+  opacity: 1;  
+}
+
+/* View Tablet and Desktop */
+@media (min-width: 767px) {
+  .pagination {
+    --bs-pagination-padding-x: 0.50rem;
+  }
+}

@@ -1,0 +1,90 @@
+.post__details__cover {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 50px;
+  max-height: 50vh;
+  object-fit: cover;
+  object-position: 0% 30%;
+  aspect-ratio: 1/1;
+  margin-top: 60px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post__details__root {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.post__details__title {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.post__details__container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.post__details__author,
+.post__details__category {
+  color: #fff;
+}
+
+.post__details__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+
+.content__description {
+  background-color: #e0d9d957;
+  border-radius: 15px;
+  padding: 40px;
+  color: #000;
+  margin-bottom: 30px;
+}
+
+.content__post {
+  background-color: #e0d9d957;
+  padding: 40px;
+  border-radius: 15px;
+  color: #000;
+}
+
+.rdw__editor__main {
+  border: 1px solid #ccc;
+}
+
+.link__register,
+.link__login {
+  text-decoration: none;
+}
+
+.link__register:hover,
+.link__login:hover {
+  color: #ccc;
+}
+
+
+/* View Tablet and Desktop */
+@media (min-width: 767px) {
+  .blog__details__cover {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    max-height: 45vh;
+    object-fit: cover;
+    object-position: 0% 40%;
+    aspect-ratio: 1/1;
+    margin-top: 30px;
+  }
+}

@@ -1,0 +1,68 @@
+.content__sismic__nearby {
+  margin-top: 160px;
+}
+
+.evento {
+  color: #fff;
+}
+
+.distanza {
+  color: #fff;
+}
+
+.view__coordinate {
+  background-color: #ffffff52;
+  padding: 20px;
+  border-radius: 15px;
+  color: #000;
+  font-weight: 400;
+  text-align: center;
+}
+
+.coordinate {
+  color: #000;
+  font-weight: 400;
+}
+
+.info__simic__nearby {
+  margin-top: 60px;
+  background-color: #ffffff52;
+  padding: 20px;
+  border-radius: 15px;
+  color: #000;
+}
+
+.content__title__position {
+  background-color: #ffffff52;
+  padding: 20px;
+  border-radius: 15px;
+  color: #000;
+}
+
+.title__nearby__access {
+  margin-top: 60px;
+  background-color: #ffffff52;
+  padding: 20px;
+  border-radius: 15px;
+  color: #000;
+  text-align: center;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.access__nearby {
+  text-decoration: none;
+  color: #fff;
+}
+
+.access__nearby:hover {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.btn__pagination {
+  --bs-pagination-bg: #94c5ff2e;
+  --bs-pagination-color: #fff;
+}
