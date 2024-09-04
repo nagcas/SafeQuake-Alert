@@ -146,7 +146,7 @@ function UpdateLocation({ userlogin, user, onUpdate, handleClose }) {
       const updatedLocation = { ...locationUser, latitude: lat, longitude: lng };
   
       // Aggiorna lo stato locale con le nuove coordinate
-      setLocation(updatedLocation);
+      setLocationUser(updatedLocation);
   
       // Effettua la richiesta PATCH con le nuove coordinate
       const response = await fetchWithAuth(`${API_URL}/api/users/${currentUser._id}/locations/${currentUser.place[0]._id}`, {
