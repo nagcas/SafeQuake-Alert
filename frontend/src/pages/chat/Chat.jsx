@@ -28,14 +28,13 @@ function Chat() {
   // Stati locali per la gestione della chat
   const [message, setMessage] = useState('');
   const [isConnect, setIsConnect] = useState(false);
-  const [userConnect, setUserConnect] = useState('');
+  const [userConnect, setUserConnect] = useState(userLogin?.username || ''); // Imposta il nome utente all'inizio
   const [messages, setMessages] = useState([]);
   const [show, setShow] = useState(false); // Gestisce la visibilità della finestra modale della chat
 
   // Funzione per chiudere la chat e disconnettersi dal server
   const handleClose = () => {
     setShow(false); // Nasconde la finestra modale
-    setMessages([]); // Reset dei messaggi visualizzati
 
     if (isConnect) {
       const newMessage = {
@@ -89,7 +88,6 @@ function Chat() {
 
       // Funzione per gestire la ricezione di un nuovo messaggio dal server
       const receiveMessage = (message) => {
-        setUserConnect(message.from); // Aggiorna lo stato con il nome dell'utente che ha inviato il messaggio
         setMessages((prevMessages) => [message, ...prevMessages]); // Aggiunge il messaggio alla lista
       };
 
@@ -198,4 +196,5 @@ function Chat() {
 }
 
 export default Chat;
+
 
