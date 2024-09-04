@@ -16,19 +16,16 @@ import { Button, Col, Modal, Row } from 'react-bootstrap';
 import { Context } from '../../modules/Context.jsx';
 import { useTranslation } from 'react-i18next';
 
-// Inizializzazione della connessione socket al server WebSocket
-const socket = io('http://localhost:5001', {
-  autoConnect: false, // Previene la connessione automatica fino a quando non viene richiesta
+// Inizializzazione dinamica della connessione socket al server WebSocket
+const socket = io('import.meta.env.VITE_API_URL '|| 'http://localhost:5001', {
+  autoConnect: false, // Connessione automatica disabilitata fino a quando non viene richiesta
 });
 
 function Chat() {
-
   const { t } = useTranslation('global');
+  const { userLogin } = useContext(Context); // Recupera i dati di login dal contesto globale
 
-  // Recupera i dati di login dell'utente dal contesto globale
-  const { userLogin } = useContext(Context);
-
-  // Definizione degli stati locali per la gestione del messaggio corrente, stato di connessione, utente connesso e lista di messaggi
+  // Stati locali per la gestione della chat
   const [message, setMessage] = useState('');
   const [isConnect, setIsConnect] = useState(false);
   const [userConnect, setUserConnect] = useState('');
@@ -39,19 +36,18 @@ function Chat() {
   const handleClose = () => {
     setShow(false); // Nasconde la finestra modale
     setMessages([]); // Reset dei messaggi visualizzati
-    
-    // Invia un messaggio "disconnesso" per notificare la disconnessione
-    const newMessage = {
-      body: 'disconnesso',
-      from: '', // Nessun mittente specificato in questo caso
-    };
-    
-    // Invia il messaggio di disconnessione al server tramite socket
-    socket.emit('message', newMessage);
-    socket.disconnect(); // Disconnette il socket dal server
-    
-    setIsConnect(false); // Aggiorna lo stato di connessione
-    setUserConnect(''); // Resetta il nome dell'utente connesso
+
+    if (isConnect) {
+      const newMessage = {
+        body: 'disconnesso',
+        from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username || 'user'),
+      };
+      
+      socket.emit('message', newMessage); // Invia il messaggio di disconnessione al server
+      socket.disconnect(); // Disconnette il socket
+      setIsConnect(false); // Aggiorna lo stato di connessione
+      setUserConnect(''); // Resetta il nome dell'utente connesso
+    }
   };
 
   // Funzione per aprire la chat e connettersi al server
@@ -61,56 +57,64 @@ function Chat() {
       socket.connect(); // Connette il socket solo se non è già connesso
       setIsConnect(true); // Imposta lo stato di connessione a "vero"
       
-      // Invia un messaggio "connesso" per notificare la connessione
       const newMessage = {
         body: t('chat.connesso'),
-        from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username ? userLogin.username : 'user'),
+        from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username || 'user'),
       };
+
       socket.emit('message', newMessage); // Invia il messaggio di connessione al server
-      if(!newMessage) {
-        setMessages([]); // Reset dei messaggi visualizzati
-      };
-    };
+    }
   };
 
   // Funzione per gestire l'invio di un nuovo messaggio
   const handleSubmit = (e) => {
     e.preventDefault(); // Previene il comportamento predefinito del form
+
     const newMessage = {
-      body: message, // Corpo del messaggio prelevato dall'input utente
-      from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username ? userLogin.username : 'user'), // Identifica il mittente
+      body: message,
+      from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username || 'user'),
     };
 
-    // Invia il mesasggio solo se ha contenuto
     if (message !== '') {
-      // Aggiorna la lista di messaggi con il nuovo messaggio
-      setMessages((prevMessages) => [newMessage, ...prevMessages]);
-  
-      // Invia il nuovo messaggio al server
-      socket.emit('message', newMessage);
-    };
+      setMessages((prevMessages) => [newMessage, ...prevMessages]); // Aggiorna la lista di messaggi
+      socket.emit('message', newMessage); // Invia il nuovo messaggio al server
+    }
 
-    // Resetta il campo di input del messaggio
-    setMessage('');
+    setMessage(''); // Resetta il campo di input del messaggio
   };
- 
+
   // Effetto per la gestione della connessione al socket e per ricevere i messaggi
   useEffect(() => {
-    socket.connect(); // Connette il socket quando il componente viene montato
+    if (isConnect) {
+      socket.connect(); // Connette il socket solo quando la chat è aperta
 
-    // Funzione per gestire la ricezione di un nuovo messaggio dal server
-    const receiveMessage = (message) => {
-      setUserConnect(message.from); // Aggiorna lo stato con il nome dell'utente che ha inviato il messaggio
-      setMessages((prevMessages) => [message, ...prevMessages]); // Aggiunge il messaggio alla lista visualizzata
-    };
+      // Funzione per gestire la ricezione di un nuovo messaggio dal server
+      const receiveMessage = (message) => {
+        setUserConnect(message.from); // Aggiorna lo stato con il nome dell'utente che ha inviato il messaggio
+        setMessages((prevMessages) => [message, ...prevMessages]); // Aggiunge il messaggio alla lista
+      };
 
-    // Ascolta l'evento 'message' del socket per ricevere i messaggi dal server
-    socket.on('message', receiveMessage);
+      socket.on('message', receiveMessage); // Ascolta l'evento 'message' del socket
 
-    // Cleanup: rimuove il listener 'message' quando il componente viene smontato
-    return () => {
-      socket.off('message', receiveMessage);
-    };
+      // Log di debug per controllare lo stato della connessione
+      socket.on('connect', () => {
+        console.log('Connesso al server WebSocket');
+      });
+
+      socket.on('disconnect', () => {
+        console.log('Disconnesso dal server WebSocket');
+      });
+
+      socket.on('connect_error', (error) => {
+        console.error('Errore di connessione al server WebSocket:', error);
+      });
+
+      // Cleanup per disconnettere il socket quando il componente viene smontato
+      return () => {
+        socket.off('message', receiveMessage);
+        socket.disconnect();
+      };
+    }
   }, [isConnect]); // L'effetto viene eseguito solo quando cambia lo stato di connessione
 
   // Funzione per resettare la chat
@@ -124,7 +128,6 @@ function Chat() {
       <Button className='btn__chat__con__noi' onClick={handleShow}>
         <i className='bi bi-chat-dots icons__chat'></i><span className='text-warning'>{userConnect}</span>
       </Button>
-
 
       {/* Finestra modale per la chat */}
       <Modal
@@ -196,6 +199,3 @@ function Chat() {
 }
 
 export default Chat;
-
-
-
