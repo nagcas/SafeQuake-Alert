@@ -98,7 +98,7 @@ const sendAlertToUsers = async (evento) => {
         await bot.telegram.sendMessage(
           user.idTelegram, // Corretto: usa user.telegramId per inviare messaggi
           `⚠️ Avviso Terremoto!\n` +
-          `Un sisma di magnetudo ML ${evento.properties.mag} è avvenuto nella zona: ` +
+          `Un sisma di magnitudo ML ${evento.properties.mag} è avvenuto nella zona: ` +
           `${evento.properties.place} il ${formatDateToItalianTime(evento.properties.time)} ` +
           `con coordinate geografiche (latitudine ${evento.geometry.coordinates[0]}, longitudine ${evento.geometry.coordinates[1]}), ` +
           `ad una profondità di ${evento.geometry.coordinates[2]} Km. ` +

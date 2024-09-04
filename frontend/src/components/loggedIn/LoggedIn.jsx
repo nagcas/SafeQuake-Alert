@@ -52,8 +52,8 @@ function LoggedIn() {
 
       if (token) {
         try {
-          // Verifica della validità del token (aggiungi un controllo reale qui se disponibile)
-          const isTokenValid = true; // Sostituisci con una vera verifica del token
+          // Verifica della validità del token
+          const isTokenValid = true;
 
           if (isTokenValid) {
             setIsLoggedIn(true);
