@@ -31,7 +31,7 @@
   background-color: #1c557d;
   box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.3);
   border-radius: 25px;
-  width: 340px;
+  width: 290px;
   height: 200px;
   margin: -110px auto 30px auto;
   color: #fff;
@@ -47,7 +47,7 @@
 
 .content__form__contacts {
   border: 50px;
-  width: 340px;
+  width: 290px;
 }
 
 .btn__contacts__form {

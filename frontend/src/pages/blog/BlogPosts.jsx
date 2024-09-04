@@ -133,7 +133,7 @@ function BlogPosts() {
                       <Col md={8}>
                         <Card.Body>
                           <CardHeader>
-                            <div>
+                            <div className='d-flex justify-content-around align-content-center gap-4'>
                               {post.author}<br />
                               <span>{t('blog-posts.tags')} {post.tags.join(' - ')}</span>
                               <span className='float-end'>{formatData(post.createdAt, 'it')}</span>
@@ -144,11 +144,11 @@ function BlogPosts() {
                           </Card.Title>
                             {post.description}
                         </Card.Body>
-                        <Card.Footer>
+                        <Card.Footer className='d-flex justify-content-center align-content-center gap-4'>
                           <span className='title__category'>{t('blog-posts.categoria')} {post.category}</span>
                           <Link 
                             to={`/detail-post/${post._id}`}
-                            className='link__post'
+                            className='link__post' 
                           >
                             {t('blog-posts.leggi')}
                           </Link>

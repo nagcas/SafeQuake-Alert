@@ -31,7 +31,7 @@ import { useTranslation } from 'react-i18next';
 
 
 
-function LoggedIn() {
+function LoggedIn({ handleClose }) {
 
   const { t, i18n } = useTranslation('global');
 
@@ -125,11 +125,12 @@ function LoggedIn() {
     localStorage.removeItem('userLogin');
     setIsLoggedIn(false);
     setUserLogin(null);
+    handleClose();
     navigate('/');
   };
 
   const isGoogle_link = userLogin?.googleId === '' ? (
-    <Dropdown.Item as={Link} to='/change-password'><i className='bi bi-key'></i> {t('loggedin.Cambia-Password')}</Dropdown.Item>
+    <Dropdown.Item onClick={handleClose} as={Link} to='/change-password'><i className='bi bi-key'></i> {t('loggedin.Cambia-Password')}</Dropdown.Item>
   ) : null;
 
   // Simula se le notifiche sono attive
@@ -152,13 +153,14 @@ function LoggedIn() {
               alt={userLogin.avatar ? 'Image user' : 'Image user default'}
               roundedCircle
             />
-            <Link to='/profile' className='d-block'><i className='bi bi-person-circle'></i> {t('loggedin.profilo')}</Link>
-            <Link to='/dashboard' className='d-block'><i className='bi bi-speedometer2'></i> {t('loggedin.dashboard')}</Link>
-            <Link to='/sismic-nearby' className='d-block'><i className='bi bi-geo-alt'></i> {t('loggedin.vicino')}</Link>
-            <Link to='/how-it-works' className='d-block'><i className='bi bi-lightbulb'></i> {t('loggedin.how-it-works')}</Link>
+            <Link onClick={handleClose} to='/profile' className='d-block'><i className='bi bi-person-circle'></i> {t('loggedin.profilo')}</Link>
+            <Link onClick={handleClose} to='/dashboard' className='d-block'><i className='bi bi-speedometer2'></i> {t('loggedin.dashboard')}</Link>
+            <Link onClick={handleClose} to='/sismic-nearby' className='d-block'><i className='bi bi-geo-alt'></i> {t('loggedin.vicino')}</Link>
+            <Link onClick={handleClose} to='/how-it-works' className='d-block'><i className='bi bi-lightbulb'></i> {t('loggedin.how-it-works')}</Link>
             <Link onClick={simulateNotification}><i className='bi bi-bell'></i> {t('loggedin.notifica')}</Link>
             {isGoogle_link}
             <Button 
+              handleClose
               onClick={handleLogout} 
               aria-label={t('loggedin.logout-button')}
               className='mt-3 btn__logout'
@@ -185,7 +187,7 @@ function LoggedIn() {
               <Dropdown.Item onClick={simulateNotification}><i className='bi bi-bell'></i> {t('loggedin.notifica')}</Dropdown.Item>
               {isGoogle_link}
               <Dropdown.Divider />
-              <Button 
+              <Button
                 onClick={handleLogout}
                 aria-label={t('loggedin.logout-button')}
                 className='mt-3 mx-3 btn__logout'
@@ -197,7 +199,8 @@ function LoggedIn() {
         </>
       ) : (
         <>
-          <Button 
+          <Button
+            onClick={handleClose}
             as={Link} 
             to='/register'
             aria-label={t('loggedin.register-button')}
@@ -205,7 +208,8 @@ function LoggedIn() {
           >
             {t('loggedin.register-text')}
           </Button>
-          <Button 
+          <Button
+            onClick={handleClose}
             as={Link} 
             to='/login'
             aria-label={t('loggedin.login-button')}

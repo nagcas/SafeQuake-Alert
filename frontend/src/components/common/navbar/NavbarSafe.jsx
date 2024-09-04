@@ -29,7 +29,7 @@ import Italia from '../../../assets/bandiere/icons8-italia-100.png';
 import GranBretagna from '../../../assets/bandiere/icons8-gran-bretagna-100.png';
 import Spagna from '../../../assets/bandiere/icons8-spagna-2-100.png';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Dropdown, Image, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import LoggedIn from '../../loggedIn/LoggedIn';
@@ -39,6 +39,15 @@ import { useTranslation } from 'react-i18next';
 function NavbarSafe() {
 
   const { t, i18n } = useTranslation('global');
+
+  // Stato per controllare l'Offcanvas
+  const [showOffcanvas, setShowOffcanvas] = useState(false);
+
+  // Funzione per chiudere l'Offcanvas
+  const handleClose = () => setShowOffcanvas(false);
+
+   // Funzione per aprire l'Offcanvas
+   const handleShow = () => setShowOffcanvas(true);
 
   return (
     <Navbar expand='lg' className='navbar-dark mb-4 fixed-top p-4 menu__navbar'>
@@ -51,9 +60,12 @@ function NavbarSafe() {
         <Navbar.Toggle 
           aria-controls='offcanvasNavbar-expand-lg' 
           className='shadow-none border-0'
+          onClick={handleShow} 
         />
         {/* Sidebar */}
         <Navbar.Offcanvas
+          show={showOffcanvas}
+          onHide={handleClose}
           id='offcanvasNavbar-expand-lg'
           aria-labelledby='offcanvasNavbarLabel-expand-lg'
           placement='start'
@@ -76,6 +88,7 @@ function NavbarSafe() {
                   isActive ? 'mx-2 menu__navbar__link nav__menu active' : 'mx-2 menu__navbar__link nav__menu'
                 } 
                 to='/'
+                onClick={handleClose}
               >
                 {t('navbar-safe.Home')}
               </NavLink>
@@ -84,6 +97,7 @@ function NavbarSafe() {
                   isActive ? 'mx-2 menu__navbar__link nav__menu active' : 'mx-2 menu__navbar__link nav__menu'
                 } 
                 to='/services'
+                onClick={handleClose}
               >
                 {t('navbar-safe.Servizi')}
               </NavLink>
@@ -92,6 +106,7 @@ function NavbarSafe() {
                   isActive ? 'mx-2 menu__navbar__link nav__menu active' : 'mx-2 menu__navbar__link nav__menu'
                 } 
                 to='/blog-posts'
+                onClick={handleClose}
               >
                 {t('navbar-safe.Blog')}
               </NavLink>
@@ -100,6 +115,7 @@ function NavbarSafe() {
                   isActive ? 'mx-2 menu__navbar__link nav__menu active' : 'mx-2 menu__navbar__link nav__menu'
                 } 
                 to='/info'
+                onClick={handleClose}
               >
                 {t('navbar-safe.Info')}
               </NavLink>
@@ -109,6 +125,7 @@ function NavbarSafe() {
                   isActive ? 'mx-2 menu__navbar__link nav__menu active' : 'mx-2 menu__navbar__link nav__menu'
                 } 
                 to='/event-sismic'
+                onClick={handleClose}
               >
                 {t('navbar-safe.Eventi-Sismici')}
               </NavLink>
@@ -117,6 +134,7 @@ function NavbarSafe() {
                   isActive ? 'mx-2 menu__navbar__link nav__menu active' : 'mx-2 menu__navbar__link nav__menu'
                 } 
                 to='/sismic-map'
+                onClick={handleClose}
               >
                 {t('navbar-safe.Mappa-Sismica')}
                 </NavLink>
@@ -125,6 +143,7 @@ function NavbarSafe() {
                   isActive ? 'mx-2 menu__navbar__link nav__menu active' : 'mx-2 menu__navbar__link nav__menu'
                 } 
                 to='/contacts'
+                onClick={handleClose}
               >
                 {t('navbar-safe.Contatti')}
               </NavLink>
@@ -134,6 +153,7 @@ function NavbarSafe() {
                 }
                 data-testid={'page-about'}
                 to='/about'
+                onClick={handleClose}
               >
                 {t('navbar-safe.About')}
               </NavLink>
@@ -192,7 +212,7 @@ function NavbarSafe() {
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-            <LoggedIn />
+            <LoggedIn handleClose={handleClose} />
             </div>
           </Offcanvas.Body>
         </Navbar.Offcanvas>

@@ -3,8 +3,13 @@
 }
 
 .title__blog__posts {
+  background-color: #ffffff52;
   text-align: center;
   color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 30px;
+  font-size: 2.0rem;
 }
 
 .card {
