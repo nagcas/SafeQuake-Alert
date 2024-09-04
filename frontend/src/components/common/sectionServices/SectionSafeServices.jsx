@@ -46,7 +46,16 @@ function SectionSafeServices() {
     <Container fluid>
       {/* Sezione dei Servizi Principali */}
       <Row className='d-flex justify-content-center content__safe__services__one gap-4' data-aos='fade-down'>
-        <Col md={12} lg={4} className='content__services__safe__one shadow'>
+        <Col md={12} lg={3} className='content__services__safe__one shadow'>
+          <div className='d-flex justify-content-center align-content-center content__services__icons'>
+          <i className='bi bi-telegram'></i>
+          </div>
+          <h2>{t('section-safe-services.services-title-bot-telegram')}</h2>
+          <p>
+            {t('section-safe-services.services-subtitle-bot-telegram')}
+          </p>
+        </Col>
+        <Col md={12} lg={3} className='content__services__safe__one shadow'>
           <div className='d-flex justify-content-center align-content-center content__services__icons'>
             <i className='bi bi-bell'></i>
           </div>
@@ -55,7 +64,7 @@ function SectionSafeServices() {
             {t('section-safe-services.services-subtitle-1')}
           </p>
         </Col>
-        <Col md={12} lg={4} className='content__services__safe__one shadow'>
+        <Col md={12} lg={3} className='content__services__safe__one shadow'>
           <div className='d-flex justify-content-center align-content-center content__services__icons'>
             <i className='bi bi-globe-europe-africa'></i>
           </div>
@@ -64,7 +73,7 @@ function SectionSafeServices() {
           {t('section-safe-services.services-subtitle-2')}
           </p>
         </Col>
-        <Col md={12} lg={4} className='content__services__safe__one shadow'>
+        <Col md={12} lg={3} className='content__services__safe__one shadow'>
           <div className='d-flex justify-content-center align-content-center content__services__icons'>
             <i className='bi bi-newspaper'></i>
           </div>

@@ -32,8 +32,10 @@
     "section-info": "è un'applicazione web avanzata progettata per fornirti allerte istantanee sui terremoti e consigli su come comportarti durante questi eventi. Con SafeQuake Alert, puoi migliorare la tua sicurezza e quella della tua famiglia con notifiche tempestive, informazioni educative e aggiornamenti costanti."
   },
   "section-safe-services": {
+    "services-title-bot-telegram": "Telegram bot SafeQuake Alert",
+    "services-subtitle-bot-telegram": "Rimani aggiornato con le notifiche direttamente su Telegram.",
     "services-title-1": "Notifiche Immediate",
-    "services-subtitle-1": "Ricevi allerte push, messaggi Telegram in tempo reale.",
+    "services-subtitle-1": "Ricevi allerte push, messaggi in tempo reale.",
     "services-title-2": "Mappa Interattiva",
     "services-subtitle-2": "Visualizza i terremoti in tempo reale su una mappa interattiva.",
     "services-title-3": "Aggiornamenti e Notizie",
