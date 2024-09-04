@@ -192,6 +192,10 @@ router.get(
   handleAuthCallback
 );
 
+// Middleware per gestire le rotte non trovate
+router.use((req, res, next) => {
+  res.status(404).json({ error: 'Risorsa non trovata!', message: 'La risorsa richiesta non è stata trovata!' });
+});
 
 
 // Esportazione del router

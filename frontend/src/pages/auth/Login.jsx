@@ -114,10 +114,7 @@ function Login() {
       setMessage({ type: 'success', text: t('login.success')});
       // Richiama la funzione dei consigli e li carica nel localstorage
       loadAdvices();
-      setTimeout(() => {
-        navigate('/profile');
-      }, 1500);
-
+      navigate('/profile');
     } catch (error) {
       setMessage({ type: 'danger', text: t('login.danger')});
       console.error(t('login.error-login'), error);

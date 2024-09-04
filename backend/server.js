@@ -20,7 +20,6 @@ import userTelegramRoutes from './routes/userTelegramRoutes.js';
 import { checkForNewEvent } from './eventSismic/eventSismic.js';
 
 
-
 import telegramRouter from './routes/telegramRoutes.js';
 import { bot } from './telegram/telegraf.js';
 
@@ -51,8 +50,8 @@ const corsOptions = {
     // Queste sono gli URL da cui il nostro frontend farà richieste al backend.
     const whitelist = [
       'http://localhost:5173', // Frontend in sviluppo
-      '', // Frontend in produzione
-      '' // URL del backend
+      'https://safe-quake-alert.vercel.app', // Frontend in produzione
+      'https://safequake-alert.onrender.com' // Backend in produzione
     ];
     
     if (process.env.NODE_ENV === 'development') {
@@ -75,10 +74,9 @@ app.use(cors(corsOptions));
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: 'https://safe-quake-alert.vercel.app',
   }
 });
-
 
 
 // Logga le richieste HTTP nel terminale, utile per il debug e per vedere le richieste che arrivano al server.
