@@ -41,7 +41,7 @@ function Chat() {
         body: 'disconnesso',
         from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username || 'user'),
       };
-      
+
       socket.emit('message', newMessage); // Invia il messaggio di disconnessione al server
       socket.disconnect(); // Disconnette il socket
       setIsConnect(false); // Aggiorna lo stato di connessione
@@ -55,13 +55,14 @@ function Chat() {
     if (!isConnect) {
       socket.connect(); // Connette il socket solo se non è già connesso
       setIsConnect(true); // Imposta lo stato di connessione a "vero"
-      
+
+      // Invia un messaggio di connessione al server
       const newMessage = {
         body: t('chat.connesso'),
         from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username || 'user'),
       };
 
-      socket.emit('message', newMessage); // Invia il messaggio di connessione al server
+      socket.emit('message', newMessage);
     }
   };
 
@@ -90,10 +91,13 @@ function Chat() {
       // Funzione per gestire la ricezione di un nuovo messaggio dal server
       const receiveMessage = (message) => {
         setMessages((prevMessages) => [message, ...prevMessages]); // Aggiunge il messaggio alla lista
+        if (message.from) {
+          setUserConnect(message.from); // Aggiorna lo stato con il nome dell'utente che ha inviato il messaggio
+        }
       };
 
       // Ascolta l'evento 'message' del socket
-      socket.on('message', receiveMessage); 
+      socket.on('message', receiveMessage);
 
       // Log di debug per controllare lo stato della connessione
       socket.on('connect', () => {
@@ -198,6 +202,3 @@ function Chat() {
 }
 
 export default Chat;
-
-
-
