@@ -20,33 +20,37 @@ import { useTranslation } from 'react-i18next';
 const socket = io(import.meta.env.VITE_API_URL || 'http://localhost:5001', {
   autoConnect: false, // Connessione automatica disabilitata fino a quando non viene richiesta
 });
-
 function Chat() {
-  const { t } = useTranslation('global');
-  const { userLogin } = useContext(Context); // Recupera i dati di login dal contesto globale
 
-  // Stati locali per la gestione della chat
+  const { t } = useTranslation('global');
+
+  // Recupera i dati di login dell'utente dal contesto globale
+  const { userLogin } = useContext(Context);
+
+  // Definizione degli stati locali per la gestione del messaggio corrente, stato di connessione, utente connesso e lista di messaggi
   const [message, setMessage] = useState('');
   const [isConnect, setIsConnect] = useState(false);
-  const [userConnect, setUserConnect] = useState(userLogin?.username || ''); // Imposta il nome utente all'inizio
+  const [userConnect, setUserConnect] = useState('');
   const [messages, setMessages] = useState([]);
   const [show, setShow] = useState(false); // Gestisce la visibilità della finestra modale della chat
 
   // Funzione per chiudere la chat e disconnettersi dal server
   const handleClose = () => {
     setShow(false); // Nasconde la finestra modale
-
-    if (isConnect) {
-      const newMessage = {
-        body: 'disconnesso',
-        from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username || 'user'),
-      };
-
-      socket.emit('message', newMessage); // Invia il messaggio di disconnessione al server
-      socket.disconnect(); // Disconnette il socket
-      setIsConnect(false); // Aggiorna lo stato di connessione
-      setUserConnect(''); // Resetta il nome dell'utente connesso
-    }
+    setMessages([]); // Reset dei messaggi visualizzati
+    
+    // Invia un messaggio "disconnesso" per notificare la disconnessione
+    const newMessage = {
+      body: 'disconnesso',
+      from: '', // Nessun mittente specificato in questo caso
+    };
+    
+    // Invia il messaggio di disconnessione al server tramite socket
+    socket.emit('message', newMessage);
+    socket.disconnect(); // Disconnette il socket dal server
+    
+    setIsConnect(false); // Aggiorna lo stato di connessione
+    setUserConnect(''); // Resetta il nome dell'utente connesso
   };
 
   // Funzione per aprire la chat e connettersi al server
@@ -55,69 +59,57 @@ function Chat() {
     if (!isConnect) {
       socket.connect(); // Connette il socket solo se non è già connesso
       setIsConnect(true); // Imposta lo stato di connessione a "vero"
-
-      // Invia un messaggio di connessione al server
+      
+      // Invia un messaggio "connesso" per notificare la connessione
       const newMessage = {
         body: t('chat.connesso'),
-        from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username || 'user'),
+        from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username ? userLogin.username : 'user'),
       };
-
-      socket.emit('message', newMessage);
-    }
+      socket.emit('message', newMessage); // Invia il messaggio di connessione al server
+      if(!newMessage) {
+        setMessages([]); // Reset dei messaggi visualizzati
+      };
+    };
   };
 
   // Funzione per gestire l'invio di un nuovo messaggio
   const handleSubmit = (e) => {
     e.preventDefault(); // Previene il comportamento predefinito del form
-
     const newMessage = {
-      body: message,
-      from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username || 'user'),
+      body: message, // Corpo del messaggio prelevato dall'input utente
+      from: userLogin?.role === 'admin' ? 'SafeQuake Alert' : (userLogin?.username ? userLogin.username : 'user'), // Identifica il mittente
     };
 
-    if (message.trim() !== '') {
-      setMessages((prevMessages) => [newMessage, ...prevMessages]); // Aggiorna la lista di messaggi
-      socket.emit('message', newMessage); // Invia il nuovo messaggio al server
-      setMessage(''); // Resetta il campo di input del messaggio
-    }
-  };
+    // Invia il mesasggio solo se ha contenuto
+    if (message !== '') {
+      // Aggiorna la lista di messaggi con il nuovo messaggio
+      setMessages((prevMessages) => [newMessage, ...prevMessages]);
+  
+      // Invia il nuovo messaggio al server
+      socket.emit('message', newMessage);
+    };
 
+    // Resetta il campo di input del messaggio
+    setMessage('');
+  };
+ 
   // Effetto per la gestione della connessione al socket e per ricevere i messaggi
   useEffect(() => {
-    // Connette il socket quando la chat è aperta
-    if (isConnect) {
-      socket.connect();
+    socket.connect(); // Connette il socket quando il componente viene montato
 
-      // Funzione per gestire la ricezione di un nuovo messaggio dal server
-      const receiveMessage = (message) => {
-        setMessages((prevMessages) => [message, ...prevMessages]); // Aggiunge il messaggio alla lista
-        if (message.from) {
-          setUserConnect(message.from); // Aggiorna lo stato con il nome dell'utente che ha inviato il messaggio
-        }
-      };
+    // Funzione per gestire la ricezione di un nuovo messaggio dal server
+    const receiveMessage = (message) => {
+      setUserConnect(message.from); // Aggiorna lo stato con il nome dell'utente che ha inviato il messaggio
+      setMessages((prevMessages) => [message, ...prevMessages]); // Aggiunge il messaggio alla lista visualizzata
+    };
 
-      // Ascolta l'evento 'message' del socket
-      socket.on('message', receiveMessage);
+    // Ascolta l'evento 'message' del socket per ricevere i messaggi dal server
+    socket.on('message', receiveMessage);
 
-      // Log di debug per controllare lo stato della connessione
-      socket.on('connect', () => {
-        console.log('Connesso al server WebSocket');
-      });
-
-      socket.on('disconnect', () => {
-        console.log('Disconnesso dal server WebSocket');
-      });
-
-      socket.on('connect_error', (error) => {
-        console.error('Errore di connessione al server WebSocket:', error);
-      });
-
-      // Cleanup per disconnettere il socket quando il componente viene smontato
-      return () => {
-        socket.off('message', receiveMessage);
-        socket.disconnect();
-      };
-    }
+    // Cleanup: rimuove il listener 'message' quando il componente viene smontato
+    return () => {
+      socket.off('message', receiveMessage);
+    };
   }, [isConnect]); // L'effetto viene eseguito solo quando cambia lo stato di connessione
 
   // Funzione per resettare la chat
@@ -131,6 +123,7 @@ function Chat() {
       <Button className='btn__chat__con__noi' onClick={handleShow}>
         <i className='bi bi-chat-dots icons__chat'></i><span className='text-warning'>{userConnect}</span>
       </Button>
+
 
       {/* Finestra modale per la chat */}
       <Modal
@@ -156,31 +149,31 @@ function Chat() {
                   placeholder={t('chat.message')}
                   className='form-control mb-2'
                 />
-                <Col className='d-flex justify-content-end gap-3'>
-                  {/* Pulsante per inviare il messaggio */}
-                  <Button 
-                    type='submit'
-                    aria-label={t('chat.button-message')} 
-                    className='btn__invia__chat'
-                  >
-                    <i className='bi bi-send'></i>
-                  </Button>
-                  {/* Pulsante per resettare la chat */}
-                  <Button 
-                    className='btn__cancel__chat'
-                    aria-label={t('chat.button-cancel')}
-                    onClick={handleResetChat}
-                  >
-                    <i className='bi bi-x-circle'></i>
-                  </Button>
-                </Col>
+              <Col className='d-flex justify-content-end gap-3'>
+                {/* Pulsante per inviare il messaggio */}
+                <Button 
+                  type='submit'
+                  aria-label={t('chat.button-message')} 
+                  className='btn__invia__chat'
+                >
+                  <i className='bi bi-send'></i>
+                </Button>
+                {/* Pulsante per resettare la chat */}
+                <Button 
+                  className='btn__cancel__chat'
+                  aria-label={t('chat.button-cancel')}
+                  onClick={handleResetChat}
+                >
+                  <i className='bi bi-x-circle'></i>
+                </Button>
+              </Col>
               </Col>
               <Col md={4}>
                 {/* Sezione per mostrare l'utente connesso */}
                 <div>
                   <p className='text-center'>{t('chat.users')}</p>
                   <span className='text-warning'>
-                    {userConnect}
+                    {isConnect ? userConnect : ''}
                   </span>
                 </div>
               </Col>
