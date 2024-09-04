@@ -8,7 +8,6 @@
  * (useState, useEffect) per gestire lo stato locale e ascoltare eventi del socket.
  */
 
-
 import './Chat.css';
 import { useContext, useEffect, useState } from 'react';
 import io from 'socket.io-client';
@@ -32,15 +31,9 @@ function Chat() {
   const handleClose = () => {
     setShow(false);
     setMessages([]);
-    
-    // Optional: Send a disconnect message if needed
-    const newMessage = {
-      body: 'Client disconnected',
-      from: userLogin?.username || 'user',
-    };
 
-    socket.emit('privateMessage', newMessage);
-    socket.disconnect(); // Disconnect from server
+    // Disconnetti se necessario
+    socket.disconnect();
     setIsConnect(false);
   };
 
@@ -51,7 +44,7 @@ function Chat() {
       socket.connect();
 
       if (userLogin?.role === 'admin') {
-        socket.emit('registerSafeQuake', userLogin.role); // Register as SafeQuake Alert
+        socket.emit('registerAdmin'); // Registra come admin
       }
 
       socket.on('privateMessage', (message) => {
@@ -70,12 +63,11 @@ function Chat() {
     const newMessage = {
       body: message,
       from: userLogin?.username || 'user',
-      to: 'safequake-alert-id', // ID di SafeQuake Alert
     };
 
     if (message !== '') {
       setMessages((prevMessages) => [newMessage, ...prevMessages]);
-      socket.emit('privateMessage', newMessage);
+      socket.emit('privateMessage', { ...newMessage, to: 'admin' }); // Invia a SafeQuake Alert
     }
 
     setMessage('');

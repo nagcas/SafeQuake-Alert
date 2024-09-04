@@ -78,8 +78,8 @@ const io = new SocketServer(server, {
   },
 });
 
-// Variabile per memorizzare l'ID di SafeQuake Alert
-let safeQuakeSocketID = null;
+// Variabile per memorizzare l'ID del socket dell'admin
+let adminSocketID = null;
 
 // Log delle richieste HTTP per il debug
 app.use(morgan('dev'));
@@ -104,27 +104,25 @@ app.use(passport.session());
 io.on('connection', (socket) => {
   console.log(`Nuovo client connesso: ${socket.id}`);
 
-  // Event handler per la registrazione di SafeQuake Alert
-  socket.on('registerSafeQuake', (role) => {
-    if (role === 'admin') {
-      safeQuakeSocketID = socket.id; // Memorizza l'ID del socket
-      console.log('SafeQuake Alert registrato con ID:', safeQuakeSocketID);
-    }
+  // Event handler per la registrazione dell'admin (SafeQuake Alert)
+  socket.on('registerAdmin', () => {
+    adminSocketID = socket.id; // Memorizza l'ID del socket dell'admin
+    console.log('Admin (SafeQuake Alert) registrato con ID:', adminSocketID);
   });
 
   socket.on('disconnect', () => {
     console.log(`Client disconnesso: ${socket.id}`);
-    if (socket.id === safeQuakeSocketID) {
-      safeQuakeSocketID = null; // Resetta l'ID quando SafeQuake Alert si disconnette
+    if (socket.id === adminSocketID) {
+      adminSocketID = null; // Resetta l'ID quando l'admin si disconnette
     }
   });
 
   // Gestione dei messaggi privati
   socket.on('privateMessage', (data) => {
     console.log('Messaggio privato ricevuto:', data);
-    if (safeQuakeSocketID) {
-      // Invia il messaggio solo a SafeQuake Alert
-      socket.to(safeQuakeSocketID).emit('privateMessage', {
+    if (adminSocketID) {
+      // Invia il messaggio solo all'admin
+      socket.to(adminSocketID).emit('privateMessage', {
         body: data.body,
         from: data.from,
       });
