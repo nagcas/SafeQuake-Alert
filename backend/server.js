@@ -70,7 +70,7 @@ const server = http.createServer(app);
 // Inizializzazione di socket.io con CORS configurato
 const io = new SocketServer(server, {
   cors: {
-    origin: 'https://safequake-alert.onrender.com',
+    origin: 'https://safe-quake-alert.vercel.app',
     methods: ['GET', 'POST'], // Metodi consentiti
   }
 });
@@ -172,5 +172,6 @@ server.listen(PORT, () => {
   console.log(`Server in esecuzione sulla porta ${PORT}`);
   console.table(endpoints(app));
 });
+
 
 
