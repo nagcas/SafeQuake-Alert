@@ -1,5 +1,11 @@
 # 🌍 SafeQuake Alert 🌍
 
+Visita il progetto finale online
+<https://safe-quake-alert.vercel.app>
+
+Clona il progetto
+<https://github.com/nagcas/SafeQuake-Alert.git>
+
 ## 🚀 Introduzione
 **SafeQuake Alert** è un'applicazione web avanzata sviluppata utilizzando **React** per il frontend e **Node.js** per il backend. L'obiettivo principale del progetto è fornire allerte in tempo reale riguardanti terremoti e offrire consigli di sicurezza su come comportarsi durante tali eventi. Questo sistema mira a migliorare la sicurezza pubblica fornendo notifiche tempestive, informazioni educative e notizie aggiornate.
 

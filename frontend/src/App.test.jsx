@@ -13,6 +13,7 @@ import FooterSafe from './components/common/footer/FooterSafe';
 import BlogPosts from './pages/blog/BlogPosts';
 //import Info from './pages/Info/Info';
 import PageNotFound from './pages/pageNotfound/PageNotFound';
+import About from './pages/about/About.jsx';
 
 
 afterEach(cleanup);
@@ -83,7 +84,8 @@ describe('Test n.2: Test del componente FooterSafe', () => {
 describe('Test n.3: Test del componente BlogPosts', () => {
   test('Il numero di post nel database corrisponde al numero delle cards renderizzate.', async () => {
     // Simula una chiamata API per ottenere i post
-    const response = await fetch('http://localhost:5001/api/posts');
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+    const response = await fetch(`${API_URL}/api/posts`);
     const posts = await response.json();
 
     // Calcola il numero di post ricevuti
@@ -258,6 +260,7 @@ describe('Test n.7: Test del componente PageNotFound', () => {
     expect(homeLink).toHaveAttribute('href', '/');
   });
 });
+
 
 
 
