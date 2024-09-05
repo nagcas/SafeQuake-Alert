@@ -175,14 +175,14 @@
     "motivazioni": "Motivazione della Scelta del Progetto",
     "progetto": "Il progetto 'SafeQuake Alert' nasce dalla mia passione per la geologia e dal desiderio di utilizzare le mie competenze tecniche per creare una soluzione innovativa che possa migliorare la sicurezza pubblica. Il mio background accademico in geologia mi ha fornito una comprensione profonda dei processi sismici e del loro impatto sulle comunità. Questo progetto rappresenta per me un'opportunità per combinare le mie conoscenze in geologia con le abilità di sviluppo web, creando un sistema che non solo avvisa le persone in caso di terremoto, ma le educa su come prepararsi e rispondere in modo efficace.",
     "utilizzo": "Come Utilizzare SafeQuake Alert",
-    "registrazioni": "Registrati utilizzando la tua email e numero di telefono per iniziare a ricevere notifiche.",
+    "registrati": "Registrati utilizzando la tua email e numero di telefono per iniziare a ricevere notifiche.",
     "accedi": "Accedi alla tua dashboard per visualizzare i terremoti in tempo reale sulla mappa interattiva.",
     "configura": "Configura le preferenze di notifica per ricevere allerte tramite il canale che preferisci (Push, Telegram).",
     "consulta": "Consulta la sezione news per rimanere aggiornato su sismologia, geologia e sicurezza.",
     "utilizza": "Utilizza la chat in tempo reale per comunicare con gli amministratori e ricevere supporto immediato.",
     "conclusione": "Conclusione",
     "innovativo": "SafeQuake Alert è un sistema completo e innovativo che sfrutta le più recenti tecnologie per migliorare la sicurezza pubblica in caso di terremoti. Integrando dati in tempo reale, notifiche multi-canale e intelligenza artificiale, questa piattaforma offre agli utenti gli strumenti necessari per essere meglio preparati e informati, riducendo così il rischio e l'impatto degli eventi sismici.",
-    "staff": "Lo staff di"
+    "staff": "Lo staff di" 
   },
   "advice": {
     "accedere": "Per accedere alla pagina advice devi effettuare il"

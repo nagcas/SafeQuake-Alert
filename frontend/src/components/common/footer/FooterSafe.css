@@ -28,12 +28,14 @@
   color: #ccc;
 }
 
+.logo-link,
 .contacts-link,
 .about-link {
   text-decoration: none;
   color: #fff;
 }
 
+.logo-link,
 .contacts-link:hover,
 .about-link:hover {
   color: #ccc;

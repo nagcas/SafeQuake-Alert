@@ -48,7 +48,7 @@ function FooterSafe() {
       <Container>
         <Row className='d-flex justify-content-center align-items-center'>
           <Col md={3} className='text-center'>
-            <Link to='/' className='Logo'>
+            <Link to='/' className='logo-link'>
               <h5>SafeQuake Alert</h5>
             </Link>
             <p>{t('footer-safe.Proteggere-le-persone-con-allerte-sismiche-tempestive-e-informazioni-educative')}</p>

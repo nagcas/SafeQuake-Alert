@@ -33,7 +33,7 @@
   },
   "section-safe-services": {
     "services-title-bot-telegram": "Bot de Telegram SafeQuake Alert",
-  "services-subtitle-bot-telegram": "Mantente informado con notificaciones directamente en Telegram.",
+    "services-subtitle-bot-telegram": "Mantente informado con notificaciones directamente en Telegram.",
     "services-title-1": "Notificaciones Instantáneas",
     "services-subtitle-1": "Recibe alertas push y mensajes de Telegram en tiempo real.",
     "services-title-2": "Mapa Interactivo",
@@ -175,7 +175,7 @@
     "motivazioni": "Motivación de la Elección del Proyecto",
     "progetto": "El proyecto 'SafeQuake Alert' surge de mi pasión por la geología y del deseo de utilizar mis habilidades técnicas para crear una solución innovadora que pueda mejorar la seguridad pública. Mi formación académica en geología me ha proporcionado una comprensión profunda de los procesos sísmicos y su impacto en las comunidades. Este proyecto representa para mí una oportunidad para combinar mis conocimientos en geología con habilidades de desarrollo web, creando un sistema que no solo alerta a las personas en caso de terremoto, sino que también las educa sobre cómo prepararse y responder de manera efectiva.",
     "utilizzo": "Cómo Usar SafeQuake Alert",
-    "registrazioni": "Regístrate utilizando tu correo electrónico y número de teléfono para comenzar a recibir notificaciones.",
+    "registrati": "Regístrate utilizando tu correo electrónico y número de teléfono para comenzar a recibir notificaciones.",
     "accedi": "Accede a tu panel para ver los terremotos en tiempo real en el mapa interactivo.",
     "configura": "Configura las preferencias de notificación para recibir alertas a través del canal que prefieras (Push, Telegram).",
     "consulta": "Consulta la sección de noticias para mantenerte actualizado sobre sismología, geología y seguridad.",

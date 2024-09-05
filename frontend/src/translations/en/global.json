@@ -175,7 +175,7 @@
     "motivazioni": "Project Choice Motivation",
     "progetto": "The 'SafeQuake Alert' project stems from my passion for geology and the desire to use my technical skills to create an innovative solution that can improve public safety. My academic background in geology has provided me with a deep understanding of seismic processes and their impact on communities. This project represents an opportunity for me to combine my geological knowledge with web development skills, creating a system that not only alerts people in the event of an earthquake but also educates them on how to prepare and respond effectively.",
     "utilizzo": "How to Use SafeQuake Alert",
-    "registrazioni": "Register using your email and phone number to start receiving notifications.",
+    "registrati": "Register using your email and phone number to start receiving notifications.",
     "accedi": "Access your dashboard to view real-time earthquakes on the interactive map.",
     "configura": "Set notification preferences to receive alerts via your preferred channel (Push, Telegram).",
     "consulta": "Check the news section to stay updated on seismology, geology, and safety.",
