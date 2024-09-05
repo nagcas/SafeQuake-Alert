@@ -170,7 +170,7 @@ const setupBot = async () => {
     // Avvio del bot con long polling
     await bot.launch();
     console.log('Bot Telegram avviato');
-
+    
   } catch (error) {
     console.error('Errore nell\'avvio del bot Telegram:', error);
 
@@ -179,8 +179,7 @@ const setupBot = async () => {
       console.log('Tentativo di riavvio del bot Telegram...');
       setupBot(); // Richiama la funzione per rilanciare il bot
     }, 5000); // Attende 5 secondi prima di riprovare
-  };
-  setTimeout(setupBot, 5000); // Tentativo di riavvio dopo 5 secondi
+  }
 }
 
 setupBot();

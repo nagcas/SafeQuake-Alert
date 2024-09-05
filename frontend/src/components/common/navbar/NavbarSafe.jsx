@@ -55,7 +55,7 @@ function NavbarSafe() {
       <Container fluid>
         {/* Logo SafeQuake Alert */}
         <Navbar.Brand className='fs-2'>
-          <Link to='/' className='Logo'>
+          <Link to='/'>
             <Image src={Logo} className='Logo' alt='Logo SafeQuake Alert'/>
           </Link>
           </Navbar.Brand>

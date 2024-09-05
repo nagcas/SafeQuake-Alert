@@ -5,15 +5,6 @@
   box-shadow: none;
 }
 
-.Logo {
-  text-decoration: none;
-  color: #fff;
-}
-
-.Logo:hover {
-  color: #ccc;
-}
-
 .btn__accedi {
   color: #fff;
   text-transform: uppercase;
@@ -152,6 +143,11 @@
     top: 100%;
     left: 20px;
     margin-top: var(--bs-dropdown-spacer);
+  }
+
+  .Logo {
+    display: inline-block;
+    width: 200px;
   }
 
 }
