@@ -122,7 +122,7 @@ export const NotificationProvider = ({ children }) => {
 
           // Notifica tramite API Notification del browser in italiano
           if ('Notification' in window && Notification.permission === 'granted') {
-            const title = `SafeQuake Alert - Magnitudo: ML ${event.properties.mag}`;
+            const title = `SafeQuake Alert - Magnitudo: ${event.properties.magType} ${event.properties.mag}`;
             const options = {
               body:
                 `Zona: ${event.properties.place}\n` +
@@ -147,7 +147,7 @@ export const NotificationProvider = ({ children }) => {
           // Notifica visiva all'interno dell'app in italiano
           toast((t) => (
             <div>
-              <p className='fw-bold'>{`SafeQuake Alert - Magnitudo: ML ${event.properties.mag}`}</p>
+              <p className='fw-bold'>{`SafeQuake Alert - Magnitudo: ${event.properties.magType} ${event.properties.mag}`}</p>
               <p>{`Zona: ${event.properties.place}`}</p>
               <p>{`Data: ${formatDateToItalianTime(event.properties.time)}`}</p>
               <p>{`Profondità: Km ${event.geometry.coordinates[2]}`}</p>
@@ -159,7 +159,7 @@ export const NotificationProvider = ({ children }) => {
 
           // Notifica tramite API Notification del browser in inglese
           if ('Notification' in window && Notification.permission === 'granted') {
-            const title = `SafeQuake Alert - Magnitude: ML ${event.properties.mag}`;
+            const title = `SafeQuake Alert - Magnitude: ${event.properties.magType} ${event.properties.mag}`;
             const options = {
               body:
                 `Zone: ${event.properties.place}\n` +
@@ -185,7 +185,7 @@ export const NotificationProvider = ({ children }) => {
           // Notifica visiva all'interno dell'app in inglese
           toast((t) => (
             <div>
-              <p className='fw-bold'>{`SafeQuake Alert - Magnitude: ML ${event.properties.mag}`}</p>
+              <p className='fw-bold'>{`SafeQuake Alert - Magnitude: ${event.properties.magType} ${event.properties.mag}`}</p>
               <p>{`Zone: ${event.properties.place}`}</p>
               <p>{`Date: ${formatDateToItalianTime(event.properties.time)}`}</p>
               <p>{`Depth: Km ${event.geometry.coordinates[2]}`}</p>
@@ -197,7 +197,7 @@ export const NotificationProvider = ({ children }) => {
 
           // Notifica tramite API Notification del browser in spagnolo
           if ('Notification' in window && Notification.permission === 'granted') {
-            const title = `SafeQuake Alert - Magnitud: ML ${event.properties.mag}`;
+            const title = `SafeQuake Alert - Magnitud: ${event.properties.magType} ${event.properties.mag}`;
             const options = {
               body:
                 `Zona: ${event.properties.place}\n` +
@@ -222,7 +222,7 @@ export const NotificationProvider = ({ children }) => {
           // Notifica visiva all'interno dell'app in spagnolo
           toast((t) => (
             <div>
-              <p className='fw-bold'>{`SafeQuake Alert - Magnitud: ML ${event.properties.mag}`}</p>
+              <p className='fw-bold'>{`SafeQuake Alert - Magnitud: ${event.properties.magType} ${event.properties.mag}`}</p>
               <p>{`Zona: ${event.properties.place}`}</p>
               <p>{`Fecha: ${formatDateToItalianTime(event.properties.time)}`}</p>
               <p>{`Profondidad: Km ${event.geometry.coordinates[2]}`}</p>

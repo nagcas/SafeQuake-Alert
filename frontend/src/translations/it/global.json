@@ -136,7 +136,7 @@
     "title-about": "SafeQuake Alert - Progetto Capstone",
     "object": "è un'applicazione web avanzata sviluppata con React e Node.js, progettata per fornire allerte in tempo reale riguardo ai terremoti e offrire consigli su come comportarsi durante tali eventi. Il sistema mira a migliorare la sicurezza pubblica attraverso notifiche tempestive, informazioni educative e news aggiornate.",
     "obiettivo": "Obiettivo del Progetto",
-    "paragrafo-2": "L'obiettivo principale di SafeQuake Alert è di creare una piattaforma che avvisi gli utenti in caso di terremoti, sfruttando diversi canali di comunicazione come notifiche push e Telegram. Inoltre, il sistema fornisce suggerimenti utili su come reagire in caso di emergenza, integrando l'intelligenza artificiale di OpenAI per garantire risposte pertinenti e personalizzate, e offre una sezione news per tenere gli utenti informati su eventi e notizie rilevanti.",
+    "paragrafo-2": "L'obiettivo principale di SafeQuake Alert è di creare una piattaforma che avvisi gli utenti in caso di terremoti, sfruttando diversi canali di comunicazione come notifiche push e Telegram. Inoltre, il sistema fornisce suggerimenti utili su come reagire in caso di emergenza e offre una sezione news per tenere gli utenti informati su eventi e notizie rilevanti.",
     "funzionalità": "Funzionalità Principali",
     "registrazione": "Registrazione e Autenticazione:",
     "registrazione-1": "Sistema di registrazione sicuro tramite email e numero di telefono, con autenticazione protetta da token JWT.",
