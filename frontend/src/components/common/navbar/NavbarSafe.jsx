@@ -34,6 +34,7 @@ import { Container, Dropdown, Image, Nav, Navbar, Offcanvas } from 'react-bootst
 import { Link, NavLink } from 'react-router-dom';
 import LoggedIn from '../../loggedIn/LoggedIn';
 import { useTranslation } from 'react-i18next';
+import Logo from '../../../assets/logo/logo.svg';
 
 
 function NavbarSafe() {
@@ -54,7 +55,9 @@ function NavbarSafe() {
       <Container fluid>
         {/* Logo SafeQuake Alert */}
         <Navbar.Brand className='fs-2'>
-          <Link to='/' className='Logo'>SafeQuake Alert</Link>
+          <Link to='/' className='Logo'>
+            <Image src={Logo} className='Logo' alt='Logo SafeQuake Alert'/>
+          </Link>
           </Navbar.Brand>
         {/* Toggle Btn */}
         <Navbar.Toggle 
