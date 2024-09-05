@@ -164,26 +164,24 @@ app.use(authorizedHandler);
 app.use(notFoundHandler);
 app.use(genericErrorHandler);
 
-// URL pubblico del server backend (deve essere HTTPS)
-const webhookURL = `${process.env.BACKEND_URL}/bot${process.env.BOT_TOKEN}`;
-
 // Funzione di avvio del bot Telegram con webhook
 const setupBot = async () => {
   try {
-    // Imposta il webhook per ricevere aggiornamenti tramite HTTPS
-    await bot.telegram.setWebhook(webhookURL);
+    // Avvio del bot con long polling
+    await bot.launch();
+    console.log('Bot Telegram avviato');
 
-    // Invia gli aggiornamenti al webhook
-    app.use(bot.webhookCallback(`/bot${process.env.BOT_TOKEN}`));
-
-    console.log(`Bot Telegram avviato con webhook su ${webhookURL}`);
   } catch (error) {
     console.error('Errore nell\'avvio del bot Telegram:', error);
-    
-    // Tentativo di riavvio dopo 5 secondi
-    setTimeout(setupBot, 5000);
-  }
-};
+
+    // Riavvia il bot dopo un breve ritardo in caso di errore
+    setTimeout(() => {
+      console.log('Tentativo di riavvio del bot Telegram...');
+      setupBot(); // Richiama la funzione per rilanciare il bot
+    }, 5000); // Attende 5 secondi prima di riprovare
+  };
+  setTimeout(setupBot, 5000); // Tentativo di riavvio dopo 5 secondi
+}
 
 setupBot();
 
