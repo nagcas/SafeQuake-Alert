@@ -51,6 +51,7 @@ bot.start(async (ctx) => {
     // Invia il messaggio di benvenuto
     ctx.reply(msg, 
       Markup.inlineKeyboard([
+        [Markup.button.url('Pagina Web SafeQuake Alert', 'https://safe-quake-alert.vercel.app')],
         [Markup.button.callback('Mostra Mio ID Telegram', 'mioId')],
         [Markup.button.callback('Informazioni App', 'info')],
       ])
