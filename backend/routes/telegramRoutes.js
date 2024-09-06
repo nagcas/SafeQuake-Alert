@@ -13,7 +13,7 @@ const router = express.Router(); // Crea un router Express per gestire le richie
 // Funzione per formattare la data e l'ora nel fuso orario italiano
 const formatDateToItalianTime = (utcDateString) => {
   const date = new Date(utcDateString); // Crea un oggetto Date a partire dalla stringa UTC
-  date.setHours(date.getHours());
+  date.setHours(date.getHours() + 2);
 
   return date.toLocaleString('it-IT', {
     timeZone: 'Europe/Rome', // Specifica il fuso orario europeo
