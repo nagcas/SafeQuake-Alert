@@ -116,7 +116,7 @@ function News() {
           ))
         ) : (
           <Col className='text-center'>
-            <p>{t('news.no-articles')}</p>
+            <p>{t('news.loading-articles')}</p>
           </Col>
         )}
       </Row>
