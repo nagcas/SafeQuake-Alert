@@ -87,7 +87,8 @@ function FooterSafe() {
         <Row className='mt-4 border__top'>
           <Col className='text-center mt-4'>
             <p>&copy; {currentYear} SafeQuake Alert.</p>
-            <p>by Gianluca Chiaravalloti</p>
+            <p><Link to='/license' className='license-link'>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007</Link></p>
+            <p>by Dott. Gianluca Chiaravalloti</p>
           </Col>
         </Row>
       </Container>

@@ -40,6 +40,7 @@ import ResetPassword from './pages/forgotPassword/ResetPassword';
 import ChangePassword from './pages/changePassword/ChangePassword';
 import Chat from './pages/chat/Chat';
 import FooterSafe from './components/common/footer/FooterSafe.jsx';
+import License from './pages/license/License.jsx';
 
 
 function NotificationHandler() {
@@ -97,6 +98,7 @@ function App() {
             <Route path='/forgot-password' element={<ForgotPassword />} /> {/* Route per aprire il componente password dimenticata */}
             <Route path='/reset-password/:id/:token' element={<ResetPassword />} /> {/* Route per aprire il componente reset password */}
             <Route path='/change-password/' element={<ChangePassword />} /> {/* Route per aprire il componente cambia password personale esclusa google */}
+            <Route path='/license' element={<License />} /> {/* Route per gestire pagine non trovate */}
             <Route path='*' element={<PageNotFound />} /> {/* Route per gestire pagine non trovate */}
           </Routes>
           <FooterSafe />

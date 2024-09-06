@@ -30,14 +30,16 @@
 
 .logo-link,
 .contacts-link,
-.about-link {
+.about-link,
+.license-link {
   text-decoration: none;
   color: #fff;
 }
 
 .logo-link,
 .contacts-link:hover,
-.about-link:hover {
+.about-link:hover,
+.license-link:hover {
   color: #ccc;
 }
 

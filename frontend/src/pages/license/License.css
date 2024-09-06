@@ -1,0 +1,18 @@
+.content__license {
+  margin-top: 160px;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff52;
+  color: #000;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.link__esterno {
+  text-decoration: none;
+  color: #fff;
+}
+
+.link__esterno:hover {
+  color: #ccc;
+}
