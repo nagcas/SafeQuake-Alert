@@ -50,3 +50,7 @@ Il frontend di SafeQuake Alert è l'interfaccia utente del sistema di allerta te
     ```bash
     npm run test
     ```
+
+## ℹ️ Alcuni test eseguiti
+
+![alt text](./test_frontend.png)
