@@ -24,14 +24,10 @@ import { Alert, Button, Form, Modal, Spinner } from 'react-bootstrap';
 import { fetchWithAuth } from '../../services/fetchWithAuth.jsx';
 import { useTranslation } from 'react-i18next';
 
-
 function UpdateAvatar({ userLogin, setUserLogin }) {
-
   const { t } = useTranslation('global');
 
-  // URL dell'API di backend
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
-  
   const [show, setShow] = useState(false);
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState('');
@@ -51,7 +47,7 @@ function UpdateAvatar({ userLogin, setUserLogin }) {
     if (file) {
       setAvatarFile(file);
       setErrors('');
-    };
+    }
   };
 
   const saveAvatar = async (e) => {
@@ -60,13 +56,13 @@ function UpdateAvatar({ userLogin, setUserLogin }) {
     if (!avatarFile) {
       setErrors(t('update-profile.avatar-file'));
       return;
-    };
+    }
 
     const formData = new FormData();
     formData.append('avatar', avatarFile);
 
-    setErrors({});
-    setLoading(true); // Imposta lo stato di caricamento
+    setErrors('');
+    setLoading(true);
 
     try {
       const updatedUser = await fetchWithAuth(`${API_URL}/api/users/${userLogin._id}/avatar`, {
@@ -74,17 +70,16 @@ function UpdateAvatar({ userLogin, setUserLogin }) {
         body: formData,
       });
 
-      setUserLogin(updatedUser); // Aggiorna userLogin con i dati dell'utente aggiornato
-      setStateButton(false);
+      setUserLogin(updatedUser); // Aggiorna direttamente con `updatedUser`
       setMessage(t('update-profile.avatar-success'));
-      
+
     } catch (error) {
       console.error('Errore di aggiornamento avatar:', error);
       setErrors(t('update-avatar.error-response'));
     } finally {
       handleClose();
-      setLoading(false); // Imposta lo stato di caricamento
-    };
+      setLoading(false);
+    }
   };
 
   return (
@@ -110,14 +105,14 @@ function UpdateAvatar({ userLogin, setUserLogin }) {
             {errors && <Alert className='m-3 text-center' variant='danger'>{errors}</Alert>}
           </Form.Group>
           <Modal.Footer>
-            <Button  
+            <Button
               className='btn__cancel'
               aria-label={t('update-avatar.button-annulla')}
               onClick={handleClose}
             >
               {t('update-avatar.annulla')}
             </Button>
-            <Button  
+            <Button
               className='btn__save'
               aria-label={t('update-avatar.button-conferma')}
               type='submit'
@@ -132,5 +127,6 @@ function UpdateAvatar({ userLogin, setUserLogin }) {
 }
 
 export default UpdateAvatar;
+
 
 
