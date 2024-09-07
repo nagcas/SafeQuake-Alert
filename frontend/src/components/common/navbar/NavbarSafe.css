@@ -1,3 +1,7 @@
+.Logo  {
+  font-family: 'Alex Brush';
+}
+
 .close__white .btn-close {
   filter: invert(1);
   border: none;
@@ -10,7 +14,7 @@
   text-transform: uppercase;
   text-decoration: none;
 }
-
+ 
 .btn__accedi:hover {
   color: #014c9c;
 }
