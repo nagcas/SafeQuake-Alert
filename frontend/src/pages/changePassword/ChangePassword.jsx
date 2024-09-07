@@ -59,20 +59,19 @@ function ChangePassword() {
     return newErrors;
   };
 
-  // Funzione per gestire il cambiamento della password
   const handleChangePassword = async (e) => {
     e.preventDefault(); // Previene il comportamento predefinito del modulo
-
+  
     const validationErrors = validate(); // Esegue la validazione
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors); // Mostra gli errori di validazione
       return;
-    };
-
+    }
+  
     setLoading(true); // Mostra lo spinner di caricamento
     setErrors({});
     setMessage(null);
-
+  
     try {
       const result = await fetchWithAuth(`${API_URL}/api/auth/change-password`, {
         method: 'PATCH',
@@ -81,32 +80,33 @@ function ChangePassword() {
         },
         body: JSON.stringify({ currentPassword, newPassword }),
       });
-
+  
       setLoading(false); // Nasconde lo spinner di caricamento
-
+  
       if (result.message) {
-        // Se c'è un messaggio di errore nella risposta
-        setErrors({ form: result.message });
-      } else {
-        // Successo, mostra un messaggio di conferma
-        setMessage({ type: 'success', text: t('change-password.success')});
-      };
+        // Se la risposta contiene il messaggio di successo
+        if (result.message.includes('Password aggiornata con successo')) {
+          setMessage({ type: 'success', text: t('change-password.success') });
+          setTimeout(() => {
+            navigate('/profile');
+          }, 2000); // Attendi 2 secondi prima di navigare
+        } else {
+          // Se c'è un errore nella risposta
+          setErrors({ form: result.message });
+        }
+      }
     } catch (error) {
       setLoading(false); // Nasconde lo spinner di caricamento
       if (error.message.includes('La password corrente non è corretta!')) {
         setErrors({ currentPassword: error.message });
-      } else if (error.message.includes('La nuova password deve essere diversa dalla password corrente!')) {
+      } else if (error.message.includes('La nuova password deve essere diversa!')) {
         setErrors({ newPassword: error.message });
       } else {
-        setErrors({ form: error.message || t('change-password.error-message')});
-      };
-    } finally {
-      // Pulisce i campi del modulo e naviga alla pagina del profilo
-      setCurrentPassword('');
-      setNewPassword('');
-      navigate('/profile');
-    };
+        setErrors({ form: error.message || t('change-password.error-message') });
+      }
+    }
   };
+  
 
   return (
     <Container>

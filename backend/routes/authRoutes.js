@@ -165,7 +165,7 @@ router.patch('/change-password', authMiddleware, async (req, res) => {
 
     // Verifica che la nuova password sia diversa dalla vecchia
     if (await user.comparePassword(newPassword)) {
-      return res.status(400).json({ message: 'La nuova password deve essere diversa dalla password corrente!' });
+      return res.status(400).json({ message: 'La nuova password deve essere diversa!' });
     };
 
     // Aggiorna la password nel database
