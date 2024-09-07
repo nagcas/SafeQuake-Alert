@@ -149,7 +149,7 @@
     "chat": "Chat in Tempo Reale:",
     "chat-1": "Comunicazione diretta tra utenti e amministratori tramite chat realizzata con Socket.io, con strumenti di moderazione integrati.",
     "tecnologie": "Tecnologie utilizzate",
-    "frontend": "Frontend:",
+    "frontend": "Frontend:", 
     "frontend-1": "React, React Router, Bootstrap 5, Aos, Leaflet (mappa)",
     "backend": "Backend:",
     "backend-1": "Node.js, Express, Cloudinary",

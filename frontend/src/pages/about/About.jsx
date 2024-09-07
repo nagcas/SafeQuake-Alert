@@ -52,7 +52,7 @@ function About() {
               </ul>
               <h3>{t('about.tecnologie')}</h3>
               <ul>
-                <li><span className='fw-bold'>{t('about.frontend')}</span> {t('about.fronted-1')}</li>
+                <li><span className='fw-bold'>{t('about.frontend')}</span> {t('about.frontend-1')}</li>
                 <li><span className='fw-bold'>{t('about.backend')}</span> {t('about.backend-1')}</li>
                 <li><span className='fw-bold'>{t('about.database')}</span> {t('about.database-1')}</li>
                 <li><span className='fw-bold'>{t('about.notifiche')}</span> {t('about.notifiche-1')}</li>
