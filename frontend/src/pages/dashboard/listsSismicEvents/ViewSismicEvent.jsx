@@ -29,7 +29,7 @@ function ViewEventSismic({ selectedSismic, setShowModal, setShowModalUltimo }) {
   // Funzione per formattare la data e l'ora nel fuso orario italiano
   const formatDateToItalianTime = (utcDateString) => {
     const date = new Date(utcDateString);
-    date.setHours(date.getHours() + 2);
+    date.setHours(date.getHours() + 1);
     return date.toLocaleString('it-IT', { 
       timeZone: 'Europe/Rome',
       year: 'numeric',
