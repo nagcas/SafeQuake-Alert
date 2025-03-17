@@ -154,7 +154,7 @@ function ListsSismicEvents({ onLatestSismicEvent, userLogin }) {
   const formatDateToItalianTime = (utcDateString) => {
     const date = new Date(utcDateString);
     // Aggiungi due ore
-    date.setHours(date.getHours() + 2);
+    date.setHours(date.getHours() + 1);
 
     return date.toLocaleString('it-IT', { 
       timeZone: 'Europe/Rome',

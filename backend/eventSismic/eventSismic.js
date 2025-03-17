@@ -8,78 +8,37 @@ import UserTelegram from '../models/userTelegram.js';
 const lastEventFilePath = path.resolve('./lastNotifiedEvent.json');
 
 // Funzione per caricare l'ultimo evento notificato da un file
-const loadLastNotifiedEventId = () => {
-  try {
-    if (fs.existsSync(lastEventFilePath)) {
-      const data = fs.readFileSync(lastEventFilePath, 'utf8');
-      const parsedData = JSON.parse(data);
-      // console.log(parsedData);
-      console.log(`Ultimo evento salvato con ID: ${parsedData.lastEventId}`);
-      return parsedData.lastEventId || null; // Ritorna solo l'ID dell'evento
-    };
-  } catch (error) {
-    console.error("Errore nel caricamento dell'ultimo evento notificato:", error);
-  };
-  return null;
-};
+// const loadLastNotifiedEventId = () => {
+//   try {
+//     if (fs.existsSync(lastEventFilePath)) {
+//       const data = fs.readFileSync(lastEventFilePath, 'utf8');
+//       const parsedData = JSON.parse(data);
+//       // console.log(parsedData);
+//       console.log(`Ultimo evento salvato con ID: ${parsedData.lastEventId}`);
+//       return parsedData.lastEventId || null; // Ritorna solo l'ID dell'evento
+//     };
+//   } catch (error) {
+//     console.error("Errore nel caricamento dell'ultimo evento notificato:", error);
+//   };
+//   return null;
+// };
 
-// Funzione per salvare l'ultimo evento notificato in un file
-const saveLastNotifiedEventId = (eventId) => {
-  if (!eventId) {
-    console.error("Tentativo di salvare un ID evento non valido (undefined o null).");
-    return;
-  };
+// // Funzione per salvare l'ultimo evento notificato in un file
+// const saveLastNotifiedEventId = (eventId) => {
+//   if (!eventId) {
+//     console.error("Tentativo di salvare un ID evento non valido (undefined o null).");
+//     return;
+//   };
 
-  try {
-    fs.writeFileSync(lastEventFilePath, JSON.stringify({ lastEventId: eventId }, null, 2)); 
-    console.log(`ID dell'ultimo evento sismico salvato: ${eventId}`);
-  } catch (error) {
-    console.error("Errore nel salvataggio dell'ultimo evento notificato:", error);
-  };
-};
+//   try {
+//     fs.writeFileSync(lastEventFilePath, JSON.stringify({ lastEventId: eventId }, null, 2)); 
+//     console.log(`ID dell'ultimo evento sismico salvato: ${eventId}`);
+//   } catch (error) {
+//     console.error("Errore nel salvataggio dell'ultimo evento notificato:", error);
+//   };
+// };
 
-// Funzione per caricare gli eventi sismici
-const loadSismicEvents = async () => {
-  const today = new Date();
-  const startDate = new Date(today.getFullYear(), 0, 1);
-  const formattedStartDate = startDate.toISOString().split('T')[0];
-  const formattedToday = today.toISOString().split('T')[0];
-
-  // URL dell'API per ottenere gli eventi sismici da INGV
-  const API_URL_INGV = `https://webservices.ingv.it/fdsnws/event/1/query?format=geojson&starttime=${formattedStartDate}&endtime=${formattedToday}&minmagnitude=0&minlatitude=35.3&maxlatitude=47.5&minlongitude=6.4&maxlongitude=18.3`;
-
-  try {
-    const response = await fetch(`${API_URL_INGV}`);
-    
-    if (!response.ok) {
-      // Se la risposta non è OK, lancia un errore
-      throw new Error(`Errore nella richiesta API: ${response.status} ${response.statusText}`);
-    }
-
-    const contentLength = response.headers.get('Content-Length');
-    if (contentLength && parseInt(contentLength) > 1000000) { // Controlla se la risposta è troppo grande
-      console.warn("La risposta dell'API è troppo grande per essere elaborata.");
-      return null;
-    }
-
-    const data = await response.json();
-    
-    if (data && Array.isArray(data.features)) {
-      const sortedSismics = data.features.sort((a, b) => {
-        return new Date(b.properties.time) - new Date(a.properties.time);
-      });
-      return sortedSismics[0]; // Restituisci l'evento più recente
-    } else {
-      console.error('La risposta API non è corretta:', data);
-      return null;
-    }
-  } catch (error) {
-    console.error('Errore nel caricamento degli eventi sismici:', error);
-    throw error;
-  }
-};
-
-
+// // Funzione per caricare gli eventi sismici
 // const loadSismicEvents = async () => {
 //   const today = new Date();
 //   const startDate = new Date(today.getFullYear(), 0, 1);
@@ -91,8 +50,20 @@ const loadSismicEvents = async () => {
 
 //   try {
 //     const response = await fetch(`${API_URL_INGV}`);
-//     const data = await response.json();
+    
+//     if (!response.ok) {
+//       // Se la risposta non è OK, lancia un errore
+//       throw new Error(`Errore nella richiesta API: ${response.status} ${response.statusText}`);
+//     }
 
+//     const contentLength = response.headers.get('Content-Length');
+//     if (contentLength && parseInt(contentLength) > 1000000) { // Controlla se la risposta è troppo grande
+//       console.warn("La risposta dell'API è troppo grande per essere elaborata.");
+//       return null;
+//     }
+
+//     const data = await response.json();
+    
 //     if (data && Array.isArray(data.features)) {
 //       const sortedSismics = data.features.sort((a, b) => {
 //         return new Date(b.properties.time) - new Date(a.properties.time);
@@ -101,12 +72,41 @@ const loadSismicEvents = async () => {
 //     } else {
 //       console.error('La risposta API non è corretta:', data);
 //       return null;
-//     };
+//     }
 //   } catch (error) {
 //     console.error('Errore nel caricamento degli eventi sismici:', error);
 //     throw error;
-//   };
+//   }
 // };
+
+
+const loadSismicEvents = async () => {
+  const today = new Date();
+  const startDate = new Date(today.getFullYear(), 0, 1);
+  const formattedStartDate = startDate.toISOString().split('T')[0];
+  const formattedToday = today.toISOString().split('T')[0];
+
+  // URL dell'API per ottenere gli eventi sismici da INGV
+  const API_URL_INGV = `https://webservices.ingv.it/fdsnws/event/1/query?format=geojson&starttime=${formattedStartDate}&endtime=${formattedToday}&minmagnitude=0&minlatitude=35.3&maxlatitude=47.5&minlongitude=6.4&maxlongitude=18.3`;
+
+  try {
+    const response = await fetch(`${API_URL_INGV}`);
+    const data = await response.json();
+
+    if (data && Array.isArray(data.features)) {
+      const sortedSismics = data.features.sort((a, b) => {
+        return new Date(b.properties.time) - new Date(a.properties.time);
+      });
+      return sortedSismics[0]; // Restituisci l'evento più recente
+    } else {
+      console.error('La risposta API non è corretta:', data);
+      return null;
+    };
+  } catch (error) {
+    console.error('Errore nel caricamento degli eventi sismici:', error);
+    throw error;
+  };
+};
 
 const bot = new Telegraf(process.env.TOKEN_BOT_KEY_TELEGRAM);
 const userFilePath = path.resolve('./users.json');
